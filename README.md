@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Martin Enke — Portfolio
 
-## Getting Started
+Glassy, grid-shimmer portfolio to showcase projects and make it easy for recruiters to get in touch.
 
-First, run the development server:
+**Live:** https://<your-vercel-url>  
+**Stack:** Next.js · React · TypeScript · Tailwind CSS · Framer Motion · Canvas 2D · Nodemailer (SMTP)
+
+---
+
+## ✨ Features
+- Responsive, grid-aligned layout with a subtle **blue/yellow** sweep background (mouse-reactive, overlapped passes).
+- Project cards linking to Vercel / Render deployments.
+- Recruiter-friendly **Contact** form → `/api/contact` (SMTP), with a hidden **honeypot** anti-spam field.
+- No email exposed on the page; environment variables handle delivery.
+
+---
+
+## 🚀 Getting started
 
 ```bash
+# Node 18+ recommended
+npm i
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# open http://localhost:3000
+´´´
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create .env.local in the project root:
 
-## Learn More
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_USER=your_email
+SMTP_PASS=<your_app_password>       # Gmail App Password or provider secret
+MAIL_FROM="Your Name <your_email>"
+MAIL_TO=your_email   # where the form should deliver
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For Gmail, enable 2-Step Verification and use an App Password.
+For other providers (Fastmail/Zoho/Outlook, etc.), use their SMTP host/port and mailbox creds.
+In production, add the same keys in Vercel → Project → Settings → Environment Variables.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Edit content
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Headline / Skills / About: src/app/page.tsx (hero card).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Projects list: projects array in src/app/page.tsx.
+
+Photo: add public/me.jpg (3:4 aspect looks great).
+
+Background sweep: GridShimmer() in src/app/page.tsx
+
+Colors: locked to blue/yellow bands.
+
+Speed/width/overlap: tweak speed, band, OVERLAP_SEC.
+
+
+Optional polish:
+
+Add SEO in src/app/layout.tsx (metadata), plus an OG image in public/og.png.
+
+External links: add rel="noopener noreferrer" for security/perf.
+
+
+## API route (contact form)
+
+File: src/app/api/contact/route.ts
+
+Runtime: Node (for nodemailer).
+
+Honeypot: drops submissions that fill the hidden company field.
+
+Minimal error handling included.
+
+
+´´´
+// Honeypot check (inside POST):
+if (body.company) {
+  return NextResponse.json({ ok: true })
+}
+´´´
+
+## Deploy
+
+Push to GitHub and Import on Vercel (framework: Next.js).
+
+Add env vars in Project → Settings → Environment Variables.
+
+Redeploy; verify the form works from the live URL.
+
+
+## Structure
+
+´´´
+src/
+  app/
+    api/
+      contact/
+        route.ts      # email handler (SMTP)
+    page.tsx          # main page (hero, projects, contact) + GridShimmer
+public/
+  me.jpg              # optional portrait
+  og.png  
+
+
+
+  ## Contact
+
+
+Open to work and collaborations. If you’re interested, please get in touch via the form.
+
+
+## License
+
+Personal portfolio. Unless stated otherwise, all rights reserved.
+
+´´´
+::contentReference[oaicite:0]{index=0}
+´´´
