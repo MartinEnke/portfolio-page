@@ -74,9 +74,10 @@ export default function PortfolioPage() {
       if (!res.ok) throw new Error('Failed to send')
       setSending('ok')
       form.reset()
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Something went wrong.'
       setSending('error')
-      setErrorMsg(err?.message || 'Something went wrong.')
+      setErrorMsg(msg)
     } finally {
       setTimeout(() => setSending(false), 4000)
     }
