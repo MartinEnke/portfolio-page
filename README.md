@@ -46,7 +46,7 @@ MAIL_TO=your_email@gmail.com           # where the form should deliver
 
 ---
 
-## 🧩 Edit content
+## Edit content
 - **Headline / Skills / About:** `src/app/page.tsx` (hero card).
 - **Projects list:** `projects` array in `src/app/page.tsx`.
 - **Photo:** put a portrait at `public/me.jpg` (3:4 works well).
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
 
 ---
 
-## 🖼️ Open Graph (link preview)
+## Open Graph (link preview)
 **Option A — Static file:** export a `1200×630` PNG as `public/og.png`.
 
 **Option B — Generated image (keeps brand in sync):** `src/app/opengraph-image.tsx`  
@@ -91,7 +91,7 @@ This route renders the hero card (blue, glassy) with your photo:
 
 ---
 
-## 🌟 Favicon
+## Favicon
 **Option A (auto):** put a square icon at **`src/app/icon.png`** (256–512px). Next.js will auto-link it.  
 **Option B (public):** place **`public/favicon.png`** and reference in `metadata.icons`.
 
@@ -106,7 +106,7 @@ export const metadata = {
 
 ---
 
-## 🔒 Security & privacy
+## Security & privacy
 - External links opened in a new tab include `rel="noopener noreferrer"` to prevent tab-hijacking and referrer leakage:
 ```html
 <a href="https://example.com" target="_blank" rel="noopener noreferrer">Link</a>
@@ -129,7 +129,7 @@ if (body.company) {
 
 ---
 
-## ☁️ Deploy
+## Deploy
 1. Push to GitHub and **Import** on **Vercel** (framework: Next.js).
 2. Add env vars in **Project → Settings → Environment Variables** (`NEXT_PUBLIC_SITE_URL`, SMTP keys).
 3. Redeploy and test: form submit, favicon, and OG preview.
@@ -139,7 +139,7 @@ if (body.company) {
 
 ---
 
-## 📁 Structure
+## Structure
 ```
 src/
   app/
@@ -156,7 +156,7 @@ public/
 
 ---
 
-## 🤝 Contact
+## Contact
 **Open to work** and collaborations. If you’re interested, please get in touch.
 
 ---
