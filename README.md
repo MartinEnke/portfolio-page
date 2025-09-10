@@ -7,7 +7,7 @@ Glassy, grid-shimmer portfolio to showcase projects and make it easy for recruit
 
 ---
 
-## ✨ Features
+## Features
 - Full-viewport **blue/yellow** grid background with **overlapped auto-swipes** + small pointer glow (Canvas).
 - Clean, **grid-aligned** cards; no raw email shown on the site.
 - Recruiter-friendly **Contact** form (`/api/contact`) with SMTP delivery + **honeypot** anti-spam.
@@ -15,7 +15,7 @@ Glassy, grid-shimmer portfolio to showcase projects and make it easy for recruit
 
 ---
 
-## 🚀 Getting started
+## Getting started
 ```bash
 # Node 18+ recommended
 npm i
@@ -25,7 +25,7 @@ npm run dev
 
 ---
 
-## 🔐 Environment variables
+## Environment variables
 Create **`.env.local`** in the project root:
 
 ```
@@ -37,7 +37,7 @@ SMTP_HOST=smtp.gmail.com
 SMTP_PORT=465
 SMTP_USER=your_email@gmail.com
 SMTP_PASS=<your_app_password>          # Gmail App Password or provider secret
-MAIL_FROM="Martin Enke <your_email@gmail.com>"
+MAIL_FROM="Your Name <your_email>"
 MAIL_TO=your_email@gmail.com           # where the form should deliver
 ```
 
@@ -83,61 +83,7 @@ export const metadata: Metadata = {
 **Option B — Generated image (keeps brand in sync):** `src/app/opengraph-image.tsx`  
 This route renders the hero card (blue, glassy) with your photo:
 
-```tsx
-// src/app/opengraph-image.tsx
-import { ImageResponse } from 'next/og'
-export const runtime = 'edge'
-export const size = { width: 1200, height: 630 }
-export const contentType = 'image/png'
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-const INCLUDE_PHOTO = true
 
-export default function OG() {
-  return new ImageResponse(
-    (
-      <div style={{
-        width:'100%', height:'100%', display:'flex', gap:28, padding:40,
-        backgroundColor:'#0b1220', color:'#EAF2FF', letterSpacing:-0.5, position:'relative'
-      }}>
-        {/* blue glows + glassy overlays */}
-        <div style={{position:'absolute',inset:0,background:'radial-gradient(900px 520px at 22% 12%, rgba(59,130,246,0.35), transparent 60%)'}} />
-        <div style={{position:'absolute',inset:0,background:'radial-gradient(800px 480px at 78% 80%, rgba(29,78,216,0.28), transparent 60%)'}} />
-        <div style={{position:'absolute',left:0,right:0,top:0,height:180,background:'linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.00))'}} />
-        <div style={{position:'absolute',inset:0,background:'linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.00) 45%)',opacity:.6}} />
-        <div style={{position:'absolute',left:0,right:0,top:0,height:1,background:'rgba(255,255,255,0.22)'}} />
-        <div style={{position:'absolute',left:0,top:0,bottom:0,width:1,background:'rgba(255,255,255,0.18)'}} />
-        <div style={{position:'absolute',left:0,right:0,bottom:0,height:1,background:'rgba(0,0,0,0.28)'}} />
-        <div style={{position:'absolute',right:0,top:0,bottom:0,width:1,background:'rgba(0,0,0,0.25)'}} />
-
-        {/* text */}
-        <div style={{ position:'relative', flex:1, display:'flex', flexDirection:'column' }}>
-          <div style={{ fontSize:90, fontWeight:800, lineHeight:1,
-            background:'linear-gradient(90deg,#c7d2fe,#a5f3fc)', backgroundClip:'text', color:'transparent' }}>
-            Martin Enke
-          </div>
-          <div style={{ marginTop:6, fontSize:60, fontWeight:700, lineHeight:1.04,
-            background:'linear-gradient(90deg,#c7d2fe,#67e8f9)', backgroundClip:'text', color:'transparent' }}>
-            Full-Stack & GenAI Developer
-          </div>
-          <div style={{ marginTop:18, fontSize:32, opacity:.92 }}>
-            Python · FastAPI/Flask · SQL/PostgreSQL · LLMs (RAG) · React · TypeScript
-          </div>
-          <div style={{ marginTop:14, fontSize:22, opacity:.8 }}>
-            I design clean, scalable APIs and integrate LLMs into real products.
-          </div>
-        </div>
-
-        {/* portrait */}
-        {INCLUDE_PHOTO && (
-          <div style={{ width:360, backgroundColor:'rgba(255,255,255,0.06)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-            <img src={`${SITE_URL}/me.jpg`} width={360} height={480} alt="Martin Enke" style={{ width:'100%', height:'100%', objectFit:'cover' }} />
-          </div>
-        )}
-      </div>
-    ), size
-  )
-}
-```
 
 **Preview locally:**  
 - Static: http://localhost:3000/og.png  
@@ -211,9 +157,17 @@ public/
 ---
 
 ## 🤝 Contact
-**Open to work** and collaborations — please share a few details and I’ll respond promptly.
+**Open to work** and collaborations. If you’re interested, please get in touch.
 
 ---
 
-## 📄 License
-Personal portfolio. Unless stated otherwise, all rights reserved.
+## License
+
+- **Code:** MIT © 2025 Martin Enke. You’re welcome to copy and adapt the code and design for your own site.
+  Keeping the license header in source files is appreciated.
+
+- **Content & assets:** © Martin Enke. All rights reserved.
+  Please replace my text, photos/portrait, favicon/monogram (“ME”), and OG image with your own.
+
+- **Attribution (optional):** If this template helped you, a note like
+  “Based on Martin Enke’s portfolio” with a link back is appreciated.
