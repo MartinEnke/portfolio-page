@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 /**
  * Portfolio — grid-aligned, full-viewport background
@@ -15,6 +16,7 @@ import { motion } from 'framer-motion'
  */
 
 export default function PortfolioPage() {
+  const isWip = process.env.NEXT_PUBLIC_WIP === 'true'
   const projects = [
     {
       title: 'ZoundZcope AI',
@@ -81,6 +83,12 @@ export default function PortfolioPage() {
   }
 
   return (
+    <>
+      {isWip && (
+        <div className="fixed top-2 right-2 z-50 border border-white/15 bg-white/10 px-2 py-1 text-[11px] text-slate-200 tracking-wide">
+          WIP
+        </div>
+      )}
     <div className="relative min-h-screen bg-slate-950 text-slate-100 overflow-hidden">
       {/* Full-viewport background */}
       <div className="pointer-events-none fixed inset-0">
@@ -171,12 +179,15 @@ export default function PortfolioPage() {
               className="col-span-12 md:col-span-4 border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20 flex items-center justify-center"
               style={{ padding: 'calc(var(--cell, 28px) * 0.3)', aspectRatio: '3 / 4' }}
             >
-              <img
-                src="/me.jpg"
-                alt="Martin Enke"
-                className="h-full w-full object-cover"
-                style={{ filter: 'contrast(1.05) saturate(1.05)' }}
-              />
+              <Image
+  src="/me.jpg"
+  alt="Martin Enke"
+  width={600}
+  height={800}
+  className="h-full w-full object-cover"
+  style={{ filter: 'contrast(1.05) saturate(1.05)' }}
+  priority
+/>
             </div>
           </div>
         </motion.section>
@@ -196,35 +207,60 @@ export default function PortfolioPage() {
           </div>
 
           <div className="grid grid-cols-12" style={{ gap: 'calc(var(--cell, 28px) * 0.5)' }}>
-            {projects.map((p) => {
-              const Tag: any = p.href ? 'a' : 'div'
-              return (
-                <Tag
-                  key={p.title}
-                  {...(p.href ? { href: p.href, target: '_blank', rel: 'noopener noreferrer' } : {})}
-                  className="col-span-12 md:col-span-6 lg:col-span-4 group relative border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20"
-                  style={{ padding: 'calc(var(--cell, 28px) * 0.7)' }}
-                >
-                  <div className="relative z-10">
-                    <div className="flex items-center justify-between gap-3">
-                      <h3 className="text-base sm:text-lg font-semibold">{p.title}</h3>
-                      <span className="text-[10px] uppercase tracking-wider border border-white/15 bg-white/10 px-2 py-1 text-slate-300">
-                        {p.hosted}
-                      </span>
-                    </div>
-                    <p className="mt-2 text-sm text-slate-300/90">{p.desc}</p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {p.tech.map((t) => (
-                        <span key={t} className="text-[11px] border border-white/10 bg-white/5 px-2 py-1 text-slate-300">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </Tag>
-              )
-            })}
+  {projects.map((p) =>
+    p.href ? (
+      <a
+        key={p.title}
+        href={p.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="col-span-12 md:col-span-6 lg:col-span-4 group relative border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20"
+        style={{ padding: 'calc(var(--cell, 28px) * 0.7)' }}
+      >
+        <div className="relative z-10">
+          <div className="flex items-center justify-between gap-3">
+            <h3 className="text-base sm:text-lg font-semibold">{p.title}</h3>
+            <span className="text-[10px] uppercase tracking-wider border border-white/15 bg-white/10 px-2 py-1 text-slate-300">
+              {p.hosted}
+            </span>
           </div>
+          <p className="mt-2 text-sm text-slate-300/90">{p.desc}</p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {p.tech.map((t) => (
+              <span key={t} className="text-[11px] border border-white/10 bg-white/5 px-2 py-1 text-slate-300">
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </a>
+    ) : (
+      <div
+        key={p.title}
+        className="col-span-12 md:col-span-6 lg:col-span-4 group relative border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20"
+        style={{ padding: 'calc(var(--cell, 28px) * 0.7)' }}
+      >
+        <div className="relative z-10">
+          <div className="flex items-center justify-between gap-3">
+            <h3 className="text-base sm:text-lg font-semibold">{p.title}</h3>
+            <span className="text-[10px] uppercase tracking-wider border border-white/15 bg-white/10 px-2 py-1 text-slate-300">
+              {p.hosted}
+            </span>
+          </div>
+          <p className="mt-2 text-sm text-slate-300/90">{p.desc}</p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {p.tech.map((t) => (
+              <span key={t} className="text-[11px] border border-white/10 bg-white/5 px-2 py-1 text-slate-300">
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  )}
+</div>
+
         </motion.section>
 
         {/* Contact */}
@@ -315,6 +351,7 @@ export default function PortfolioPage() {
         </div>
       </main>
     </div>
+    </>
   )
 }
 
