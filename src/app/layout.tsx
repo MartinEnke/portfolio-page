@@ -1,4 +1,3 @@
-// src/app/layout.tsx
 import './globals.css'
 import type { Metadata } from 'next'
 
@@ -17,31 +16,25 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
-    url: '/', // resolves against metadataBase
+    url: '/',               // relative (will resolve against metadataBase)
     siteName: 'Martin Enke — Portfolio',
     title: 'Martin Enke — Full-Stack & GenAI Developer',
     description:
       'Backend & GenAI developer integrating LLMs into real products. Python · FastAPI/Flask · React · TypeScript · SQL/PostgreSQL.',
-    images: [
-      {
-        url: `${siteUrl}/opengraph-image`, // generated OG route
-        width: 1200,
-        height: 630,
-        alt: 'Martin Enke — Portfolio',
-      },
-    ],
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Preview — Martin Enke Portfolio' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Martin Enke — Full-Stack & GenAI Developer',
     description:
       'Backend & GenAI developer integrating LLMs into real products. Python · FastAPI/Flask · React · TypeScript · SQL/PostgreSQL.',
-    images: [`${siteUrl}/opengraph-image`],
+    images: ['/og.png'],     // relative
   },
   icons: {
     icon: [{ url: '/favicon.png?v=3', type: 'image/png' }],
-  },
-}
+  }
+  }
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
