@@ -462,11 +462,7 @@ function GridShimmer() {
   const motionOK = useRef<boolean>(true)
   const coarse = useRef<boolean>(false)
   const running = useRef<boolean>(true)
-  const pointer = useRef<{ x: number; y: number; active: boolean }>({
-    x: -9999,
-    y: -9999,
-    active: false,
-  })
+  const pointer = useRef<{ x: number; y: number; active: boolean }>({ x: -9999, y: -9999, active: false })
 
   useEffect(() => {
     const m = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -490,42 +486,42 @@ function GridShimmer() {
   }, [])
 
   useEffect(() => {
-    const canvas = ref.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
+    const canvasEl = ref.current
+    if (!canvasEl) return
+    const ctx = canvasEl.getContext('2d')
     if (!ctx) return
 
     const dpr = Math.min(2, window.devicePixelRatio || 1)
 
-    function resizeToViewport(): void {
+    const resizeToViewport = (c: HTMLCanvasElement, cx: CanvasRenderingContext2D): void => {
       const width = window.innerWidth
       const height = window.innerHeight
-      canvas.width = Math.floor(width * dpr)
-      canvas.height = Math.floor(height * dpr)
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      c.width = Math.floor(width * dpr)
+      c.height = Math.floor(height * dpr)
+      cx.setTransform(dpr, 0, 0, dpr, 0, 0)
     }
 
-    resizeToViewport()
-    window.addEventListener('resize', resizeToViewport)
+    resizeToViewport(canvasEl, ctx)
+    const onResize = () => resizeToViewport(canvasEl, ctx)
+    window.addEventListener('resize', onResize)
 
-    function setPointer(clientX: number, clientY: number): void {
+    const setPointer = (clientX: number, clientY: number): void => {
       pointer.current.x = clientX
       pointer.current.y = clientY
       pointer.current.active = true
     }
-    function onMove(e: MouseEvent): void {
-      setPointer(e.clientX, e.clientY)
-    }
-    function onLeave(): void {
+    const onMove = (e: MouseEvent): void => setPointer(e.clientX, e.clientY)
+    const onLeave = (): void => {
       pointer.current.active = false
       pointer.current.x = -9999
       pointer.current.y = -9999
     }
-    function onTouch(e: TouchEvent): void {
+    const onTouch = (e: TouchEvent): void => {
       if (!e.touches?.length) return onLeave()
       const t = e.touches[0]
       setPointer(t.clientX, t.clientY)
     }
+
     window.addEventListener('mousemove', onMove)
     window.addEventListener('mouseleave', onLeave)
     window.addEventListener('touchstart', onTouch, { passive: true })
@@ -548,16 +544,11 @@ function GridShimmer() {
     const easeInOutCubic = (t: number): number =>
       t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
 
-    function randomAngle(): number {
-      return Math.random() * Math.PI * 2
-    }
+    const randomAngle = (): number => Math.random() * Math.PI * 2
+    const randomBlueYellowHue = (): number =>
+      Math.random() < 0.5 ? 48 + Math.random() * 12 : 200 + Math.random() * 35
 
-    function randomBlueYellowHue(): number {
-      // Yellow ~48–60°, Blue ~200–235°
-      return Math.random() < 0.5 ? 48 + Math.random() * 12 : 200 + Math.random() * 35
-    }
-
-    function hslToRgb(h: number, s: number, l: number): [number, number, number] {
+    const hslToRgb = (h: number, s: number, l: number): [number, number, number] => {
       const a = s * Math.min(l, 1 - l)
       const f = (n: number) => {
         const k = (n + h * 12) % 12
@@ -569,19 +560,13 @@ function GridShimmer() {
 
     const lerp = (a: number, b: number, t: number): number => a + (b - a) * t
 
-    function spawnPass(w: number, h: number, margin: number): Pass {
+    const spawnPass = (w: number, h: number, margin: number): Pass => {
       const angle = randomAngle()
       const ux = Math.cos(angle)
       const uy = Math.sin(angle)
       const projs = [0 * ux + 0 * uy, w * ux + 0 * uy, 0 * ux + h * uy, w * ux + h * uy]
       const minProj = Math.min(...projs)
-      return {
-        angle,
-        pos: minProj - margin,
-        hueFrom: randomBlueYellowHue(),
-        hueTo: randomBlueYellowHue(),
-        hueT: 0,
-      }
+      return { angle, pos: minProj - margin, hueFrom: randomBlueYellowHue(), hueTo: randomBlueYellowHue(), hueT: 0 }
     }
 
     passes.push({
@@ -594,7 +579,7 @@ function GridShimmer() {
 
     let last = performance.now()
 
-    function draw(now: number): void {
+    const draw = (now: number): void => {
       if (!running.current) {
         requestAnimationFrame(draw)
         return
@@ -603,8 +588,8 @@ function GridShimmer() {
       const dt = Math.max(0.001, (now - last) / 1000)
       last = now
 
-      const w = canvas.width / dpr
-      const h = canvas.height / dpr
+      const w = canvasEl.width / dpr
+      const h = canvasEl.height / dpr
 
       ctx.clearRect(0, 0, w, h)
 
@@ -622,12 +607,12 @@ function GridShimmer() {
       const band = Math.max(cell * 6, diag * 0.3)
 
       if (passes.length === 1 && !Number.isFinite(passes[0].pos)) {
-        const p = passes[0]
-        const ux0 = Math.cos(p.angle)
-        const uy0 = Math.sin(p.angle)
+        const p0 = passes[0]
+        const ux0 = Math.cos(p0.angle)
+        const uy0 = Math.sin(p0.angle)
         const projs = [0 * ux0 + 0 * uy0, w * ux0 + 0 * uy0, 0 * ux0 + h * uy0, w * ux0 + h * uy0]
         const minProj = Math.min(...projs)
-        p.pos = minProj - margin
+        p0.pos = minProj - margin
       }
 
       let spawned = false
@@ -733,7 +718,7 @@ function GridShimmer() {
     requestAnimationFrame(draw)
 
     return () => {
-      window.removeEventListener('resize', resizeToViewport)
+      window.removeEventListener('resize', onResize)
       window.removeEventListener('mousemove', onMove)
       window.removeEventListener('mouseleave', onLeave)
       window.removeEventListener('touchstart', onTouch)
