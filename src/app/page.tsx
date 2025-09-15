@@ -333,40 +333,39 @@ function ProjectCard({ project }: { project: Project }) {
 
   React.useEffect(() => {
     const mq = window.matchMedia('(pointer: coarse)')
-    const set = () => setIsCoarse(mq.matches)
-    set()
-    mq.addEventListener?.('change', set)
-    return () => mq.removeEventListener?.('change', set)
+    const onChange = (e: MediaQueryListEvent) => setIsCoarse(e.matches)
+    setIsCoarse(mq.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
   }, [])
 
   const PREVIEW_BASE = 260
-const SCALE = 1.40           // +15%
-const PREVIEW_WIDTH = Math.round(PREVIEW_BASE * SCALE)
-const GAP = 16
-const PAD = 12
+  const SCALE = 1.40 // +15%; tweak here
+  const PREVIEW_WIDTH = Math.round(PREVIEW_BASE * SCALE)
+  const GAP = 16
+  const PAD = 12
 
-  // 2) when computing position, keep using PREVIEW_WIDTH for overflow checks
-const updatePos = () => {
-  const el = cardRef.current
-  if (!el) return
-  const r = el.getBoundingClientRect()
-  let left = r.right + GAP
-  let top = r.top - 8
+  const updatePos = (): void => {
+    const el = cardRef.current
+    if (!el) return
+    const r = el.getBoundingClientRect()
+    let left = r.right + GAP
+    let top = r.top - 8
 
-  // flip to the left if going off the right edge
-  if (left + PREVIEW_WIDTH + PAD > window.innerWidth) {
-    left = Math.max(PAD, r.left - PREVIEW_WIDTH - GAP)
+    // flip to the left if going off the right edge
+    if (left + PREVIEW_WIDTH + PAD > window.innerWidth) {
+      left = Math.max(PAD, r.left - PREVIEW_WIDTH - GAP)
+    }
+    if (top < PAD) top = PAD
+
+    setPos({ left, top })
   }
-  if (top < PAD) top = PAD
 
-  setPos({ left, top })
-}
-
-  const onEnter = () => {
+  const onEnter = (): void => {
     updatePos()
     setShow(true)
   }
-  const onLeave = () => setShow(false)
+  const onLeave = (): void => setShow(false)
 
   const CardInner = (
     <div
@@ -384,7 +383,10 @@ const updatePos = () => {
         <p className="mt-2 text-sm text-slate-300/90">{project.desc}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {project.tech.map((t) => (
-            <span key={t} className="text-[11px] border border-white/10 bg-white/5 px-2 py-1 text-slate-300">
+            <span
+              key={t}
+              className="text-[11px] border border-white/10 bg-white/5 px-2 py-1 text-slate-300"
+            >
               {t}
             </span>
           ))}
@@ -393,81 +395,109 @@ const updatePos = () => {
     </div>
   )
 
-  // linked vs non-linked wrapper (add hover handlers here)
-  const Wrapper = project.href ? 'a' : 'div'
-  const wrapperProps: any = project.href
-    ? { href: project.href, target: '_blank', rel: 'noopener noreferrer' }
-    : {}
+  // Render either <a> or <div> wrapper (typed, no `any`)
+  const CardWrapper = project.href ? (
+    <a
+      href={project.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group col-span-12 md:col-span-6 lg:col-span-4 block"
+      onMouseEnter={onEnter}
+      onMouseMove={updatePos}
+      onMouseLeave={onLeave}
+    >
+      {CardInner}
+    </a>
+  ) : (
+    <div
+      className="group col-span-12 md:col-span-6 lg:col-span-4"
+      onMouseEnter={onEnter}
+      onMouseMove={updatePos}
+      onMouseLeave={onLeave}
+    >
+      {CardInner}
+    </div>
+  )
 
   return (
     <>
-      <Wrapper
-        {...wrapperProps}
-        className="group col-span-12 md:col-span-6 lg:col-span-4 block"
-        onMouseEnter={onEnter}
-        onMouseMove={updatePos}
-        onMouseLeave={onLeave}
-      >
-        {CardInner}
-      </Wrapper>
+      {CardWrapper}
 
       {/* Portal preview (desktop only) */}
       {mounted && show && !isCoarse && (project.preview || project.previewVideo) &&
-  createPortal(
-    <div
-      className="pointer-events-none fixed z-[9999] transition duration-150 ease-out"
-      style={{ left: pos.left, top: pos.top, width: PREVIEW_WIDTH }}
-    >
-      <div className="rounded-lg overflow-visible border border-white/15 shadow-2xl shadow-black/40 bg-black/40">
-        {project.previewVideo ? (
-          <video src={project.previewVideo} autoPlay loop muted playsInline className="block w-full h-auto" />
-        ) : (
-          <img src={project.preview!} alt="" className="block w-full h-auto" decoding="async" />
+        createPortal(
+          <div
+            className="pointer-events-none fixed z-[9999] transition duration-150 ease-out"
+            style={{ left: pos.left, top: pos.top, width: PREVIEW_WIDTH }}
+          >
+            <div className="rounded-lg overflow-visible border border-white/15 shadow-2xl shadow-black/40 bg-black/40">
+              {project.previewVideo ? (
+                <video
+                  src={project.previewVideo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="block w-full h-auto"
+                />
+              ) : (
+                // Plain <img> preserves full height (no crop)
+                <img
+                  src={project.preview!}
+                  alt="" // decorative
+                  className="block w-full h-auto"
+                  decoding="async"
+                />
+              )}
+            </div>
+          </div>,
+          document.body
         )}
-      </div>
-    </div>,
-    document.body
-  )
-}
     </>
   )
 }
 
-
 function GridShimmer() {
   const ref = useRef<HTMLCanvasElement | null>(null)
-  const motionOK = useRef(true)
-  const coarse = useRef(false)
-  const running = useRef(true)
-  const pointer = useRef<{ x: number; y: number; active: boolean }>({ x: -9999, y: -9999, active: false })
+  const motionOK = useRef<boolean>(true)
+  const coarse = useRef<boolean>(false)
+  const running = useRef<boolean>(true)
+  const pointer = useRef<{ x: number; y: number; active: boolean }>({
+    x: -9999,
+    y: -9999,
+    active: false,
+  })
 
   useEffect(() => {
     const m = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const onReduce = (e: MediaQueryListEvent) => (motionOK.current = !e.matches)
     motionOK.current = !m.matches
-    const onChange = () => (motionOK.current = !m.matches)
-    m.addEventListener?.('change', onChange)
+    m.addEventListener('change', onReduce)
 
     const pc = window.matchMedia('(pointer: coarse)')
+    const onPC = (e: MediaQueryListEvent) => (coarse.current = e.matches)
     coarse.current = pc.matches
-    const onPC = () => (coarse.current = pc.matches)
-    pc.addEventListener?.('change', onPC)
+    pc.addEventListener('change', onPC)
 
     const onVis = () => (running.current = document.visibilityState === 'visible')
     document.addEventListener('visibilitychange', onVis)
 
     return () => {
-      m.removeEventListener?.('change', onChange)
-      pc.removeEventListener?.('change', onPC)
+      m.removeEventListener('change', onReduce)
+      pc.removeEventListener('change', onPC)
       document.removeEventListener('visibilitychange', onVis)
     }
   }, [])
 
   useEffect(() => {
-    const canvas = ref.current!
-    const ctx = canvas.getContext('2d')!
+    const canvas = ref.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
     const dpr = Math.min(2, window.devicePixelRatio || 1)
 
-    function resizeToViewport() {
+    function resizeToViewport(): void {
       const width = window.innerWidth
       const height = window.innerHeight
       canvas.width = Math.floor(width * dpr)
@@ -478,14 +508,20 @@ function GridShimmer() {
     resizeToViewport()
     window.addEventListener('resize', resizeToViewport)
 
-    function setPointer(clientX: number, clientY: number) {
+    function setPointer(clientX: number, clientY: number): void {
       pointer.current.x = clientX
       pointer.current.y = clientY
       pointer.current.active = true
     }
-    function onMove(e: MouseEvent) { setPointer(e.clientX, e.clientY) }
-    function onLeave() { pointer.current.active = false; pointer.current.x = -9999; pointer.current.y = -9999 }
-    function onTouch(e: TouchEvent) {
+    function onMove(e: MouseEvent): void {
+      setPointer(e.clientX, e.clientY)
+    }
+    function onLeave(): void {
+      pointer.current.active = false
+      pointer.current.x = -9999
+      pointer.current.y = -9999
+    }
+    function onTouch(e: TouchEvent): void {
       if (!e.touches?.length) return onLeave()
       const t = e.touches[0]
       setPointer(t.clientX, t.clientY)
@@ -496,8 +532,7 @@ function GridShimmer() {
     window.addEventListener('touchmove', onTouch, { passive: true })
     window.addEventListener('touchend', onLeave)
 
-    // (your existing shimmer code unchanged)
-    // ...
+    // ---------- sweep setup ----------
     const OVERLAP_SEC = 1.5
 
     type Pass = {
@@ -509,19 +544,30 @@ function GridShimmer() {
     }
 
     const passes: Pass[] = []
-    const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
-    function randomAngle() { return Math.random() * Math.PI * 2 }
-    function randomBlueYellowHue() { return Math.random() < 0.5 ? 48 + Math.random() * 12 : 200 + Math.random() * 35 }
-    function hslToRgb(h: number, s: number, l: number) {
+
+    const easeInOutCubic = (t: number): number =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+
+    function randomAngle(): number {
+      return Math.random() * Math.PI * 2
+    }
+
+    function randomBlueYellowHue(): number {
+      // Yellow ~48–60°, Blue ~200–235°
+      return Math.random() < 0.5 ? 48 + Math.random() * 12 : 200 + Math.random() * 35
+    }
+
+    function hslToRgb(h: number, s: number, l: number): [number, number, number] {
       const a = s * Math.min(l, 1 - l)
       const f = (n: number) => {
         const k = (n + h * 12) % 12
         const col = l - a * Math.max(-1, Math.min(k - 3, Math.min(9 - k, 1)))
         return Math.round(col * 255)
       }
-      return [f(0), f(8), f(4)] as const
+      return [f(0), f(8), f(4)]
     }
-    const lerp = (a: number, b: number, t: number) => a + (b - a) * t
+
+    const lerp = (a: number, b: number, t: number): number => a + (b - a) * t
 
     function spawnPass(w: number, h: number, margin: number): Pass {
       const angle = randomAngle()
@@ -529,14 +575,31 @@ function GridShimmer() {
       const uy = Math.sin(angle)
       const projs = [0 * ux + 0 * uy, w * ux + 0 * uy, 0 * ux + h * uy, w * ux + h * uy]
       const minProj = Math.min(...projs)
-      return { angle, pos: minProj - margin, hueFrom: randomBlueYellowHue(), hueTo: randomBlueYellowHue(), hueT: 0 }
+      return {
+        angle,
+        pos: minProj - margin,
+        hueFrom: randomBlueYellowHue(),
+        hueTo: randomBlueYellowHue(),
+        hueT: 0,
+      }
     }
 
-    passes.push({ angle: randomAngle(), pos: Number.NEGATIVE_INFINITY, hueFrom: randomBlueYellowHue(), hueTo: randomBlueYellowHue(), hueT: 1 })
+    passes.push({
+      angle: randomAngle(),
+      pos: Number.NEGATIVE_INFINITY,
+      hueFrom: randomBlueYellowHue(),
+      hueTo: randomBlueYellowHue(),
+      hueT: 1,
+    })
+
     let last = performance.now()
 
-    function draw(now: number) {
-      if (!running.current) { requestAnimationFrame(draw); return }
+    function draw(now: number): void {
+      if (!running.current) {
+        requestAnimationFrame(draw)
+        return
+      }
+
       const dt = Math.max(0.001, (now - last) / 1000)
       last = now
 
@@ -560,8 +623,9 @@ function GridShimmer() {
 
       if (passes.length === 1 && !Number.isFinite(passes[0].pos)) {
         const p = passes[0]
-        const ux = Math.cos(p.angle), uy = Math.sin(p.angle)
-        const projs = [0 * ux + 0 * uy, w * ux + 0 * uy, 0 * ux + h * uy, w * ux + h * uy]
+        const ux0 = Math.cos(p.angle)
+        const uy0 = Math.sin(p.angle)
+        const projs = [0 * ux0 + 0 * uy0, w * ux0 + 0 * uy0, 0 * ux0 + h * uy0, w * ux0 + h * uy0]
         const minProj = Math.min(...projs)
         p.pos = minProj - margin
       }
@@ -572,7 +636,8 @@ function GridShimmer() {
         p.pos += speed * dt
         p.hueT = Math.min(1, p.hueT + dt / 0.6)
 
-        const ux = Math.cos(p.angle), uy = Math.sin(p.angle)
+        const ux = Math.cos(p.angle)
+        const uy = Math.sin(p.angle)
         const projs = [0 * ux + 0 * uy, w * ux + 0 * uy, 0 * ux + h * uy, w * ux + h * uy]
         const minProj = Math.min(...projs)
         const maxProj = Math.max(...projs)
@@ -610,8 +675,8 @@ function GridShimmer() {
 
       const tintAlphaScale = 0.42
 
-      for (let rI = 0; rI < Math.ceil(rows); rI++) {
-        for (let cI = 0; cI < Math.ceil(cols); cI++) {
+      for (let rI = 0; rI < rows; rI++) {
+        for (let cI = 0; cI < cols; cI++) {
           const x = cI * cell + cell / 2
           const y = rI * cell + cell / 2
 
@@ -624,13 +689,15 @@ function GridShimmer() {
           }
 
           let sTotal = 0
-          let rAcc = 0, gAcc = 0, bAcc = 0
+          let rAcc = 0
+          let gAcc = 0
+          let bAcc = 0
 
           for (const { p, mixT, color, ux, uy } of passCache) {
             const proj = x * ux + y * uy
             const dxs = Math.abs(proj - p.pos)
             const crest = Math.max(0, 1 - dxs / band)
-            const s = (crest * crest) * mixT
+            const s = crest * crest * mixT
             if (s > 0.0001) {
               sTotal += s
               rAcc += color.r * s
@@ -639,7 +706,9 @@ function GridShimmer() {
             }
           }
 
-          let r = 255, g = 255, b = 255
+          let r = 255
+          let g = 255
+          let b = 255
           if (sTotal > 0) {
             r = Math.round(rAcc / sTotal)
             g = Math.round(gAcc / sTotal)
@@ -650,10 +719,10 @@ function GridShimmer() {
           let alpha = 0.026 + Math.min(1, sTotal) * 0.33 + glow * 0.45 + noise
           alpha = Math.max(0.02, Math.min(0.65, alpha))
 
-          ;(ctx as any).fillStyle = `rgba(${r},${g},${b},${alpha * tintAlphaScale})`
+          ctx.fillStyle = `rgba(${r},${g},${b},${alpha * tintAlphaScale})`
           ctx.fillRect(x - cell / 2 + 0.5, y - cell / 2 + 0.5, cell - 1, cell - 1)
 
-          ;(ctx as any).strokeStyle = 'rgba(255,255,255,0.04)'
+          ctx.strokeStyle = 'rgba(255,255,255,0.04)'
           ctx.strokeRect(x - cell / 2 + 0.5, y - cell / 2 + 0.5, cell - 1, cell - 1)
         }
       }
