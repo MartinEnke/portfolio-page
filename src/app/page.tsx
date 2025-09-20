@@ -51,9 +51,9 @@ export default function PortfolioPage() {
       preview: '/previews/zoundzcope.jpg',
     },
     {
-      title: 'AI Promo Agent',
+      title: 'AI Music Promo Agent',
       desc:
-        'Shape a creative direction, generate platform-aware content, build an image prompt, and export a tidy PDF — in minutes.',
+        'Shape a creative direction, generate platform-aware content, get image prompts for cover artworks, and export a tidy PDF — in minutes.',
       tech: ['Next.js', 'TypeScript', 'OpenAI API', 'Tailwind', 'jsPDF'],
       hosted: 'Vercel',
       href: 'https://ai-promo-agent.vercel.app/',
@@ -62,7 +62,7 @@ export default function PortfolioPage() {
     },
     {
       title: 'Groovebox',
-      desc: 'Mobile-first drum loop sequencer — tap, record, adjust swing, and save sessions.',
+      desc: 'Mobile-first drum loop sequencer — tap, record, tune, sidechain, swing, fx, compression, and save sessions.',
       tech: ['React', 'Vite', 'TypeScript', 'Web Audio API', 'localStorage'],
       hosted: 'Vercel',
       href: 'https://groovebox-martin.vercel.app/',
