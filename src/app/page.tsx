@@ -73,7 +73,7 @@ export default function PortfolioPage() {
       title: 'The Quiet Almanac',
       desc:
         'Multilingual blog with auth, AI moderation, AI translation & read-aloud. Posts, comments, likes, notifications, feedback.',
-      tech: ['Flask', 'OpenAI API', 'PostgreSQL', 'JWT', 'Tailwind CSS'],
+      tech: ['Python', 'Flask', 'OpenAI API', 'PostgreSQL', 'JWT', 'Tailwind CSS'],
       hosted: 'Render',
       href: 'https://the-quiet-almanac.onrender.com/',
       github: 'https://github.com/MartinEnke/Masterblog_API',
@@ -219,7 +219,7 @@ I design clean, scalable APIs and integrate LLM features into real products.
                   <div className="text-sm text-slate-200/95">
                   </div>
   <p>
-    I’m a Python-first backend & GenAI dev with roots in music. <br />Built three LLM-powered apps
+    Python-first backend & GenAI engineer with roots in music. <br />Built three LLM-powered apps
     and a playful React groovebox. Backend-led, frontend-curious.
   </p> <br />
   <p className="mt-3 text-s s:text-base text-slate-200/95">
