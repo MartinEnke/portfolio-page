@@ -11,40 +11,86 @@ type Project = {
   tech: string[]
   hosted: string
   href?: string
-  preview?: string       // static image preview (recommended)
-  previewVideo?: string  // short muted loop (optional)
+  github?: string
+  preview?: string
+  previewVideo?: string
+}
+
+type BlogEntry = {
+  date: string     // ISO is fine; we render as plain text
+  title: string
+  body: string
+  tags?: string[]
+  link?: string
 }
 
 export default function PortfolioPage() {
   const isWip = process.env.NEXT_PUBLIC_WIP === 'true'
 
+  // ——— Projects (2×2 grid; AI Promo Agent second) ———
   const projects: Project[] = [
     {
       title: 'ZoundZcope AI',
       desc:
-        'Audio analysis & AI feedback. Live free-tier demo: some metrics approximated; RAG temporarily disabled.',
+        'Audio analysis & AI feedback for producers: spectral metrics, structured critique, follow-ups, A/B AI compare, and RAG docs.',
       tech: ['Python', 'FastAPI', 'SQLAlchemy', 'OpenAI API', 'librosa', 'Tailwind'],
       hosted: 'Render',
       href: 'https://zoundzcope-ai.onrender.com/',
+      github: 'https://github.com/MartinEnke/ZoundZcope_AI',
       preview: '/previews/zoundzcope.jpg',
-      // previewVideo: '/previews/zoundzcope.webm', // optional micro-demo
+    },
+    {
+      title: 'AI Promo Agent',
+      desc:
+        'Shape a creative direction, generate platform-aware content, build an image prompt, and export a tidy PDF — in minutes.',
+      tech: ['Next.js', 'TypeScript', 'OpenAI API', 'Tailwind', 'jsPDF'],
+      hosted: 'Vercel',
+      href: 'https://ai-promo-agent.vercel.app/',
+      github: 'https://github.com/MartinEnke/creative-promo-agent',
+      preview: '/previews/promo_agent.jpg',
     },
     {
       title: 'Groovebox',
-      desc: 'Mobile-first drum-loop groovebox — tap, record, and save sessions.',
+      desc: 'Mobile-first drum loop sequencer — tap, record, adjust swing, and save sessions.',
       tech: ['React', 'Vite', 'TypeScript', 'Web Audio API', 'localStorage'],
       hosted: 'Vercel',
       href: 'https://groovebox-martin.vercel.app/',
+      github: 'https://github.com/MartinEnke/groovebox2',
       preview: '/previews/groovebox.jpg',
     },
     {
       title: 'The Quiet Almanac',
-      desc: 'Multilingual blog with auth, AI moderation, and AI features.',
+      desc:
+        'Multilingual blog with auth, AI moderation, AI translation & read-aloud. Posts, comments, likes, notifications, feedback.',
       tech: ['Flask', 'OpenAI API', 'PostgreSQL', 'JWT', 'Tailwind CSS'],
       hosted: 'Render',
       href: 'https://the-quiet-almanac.onrender.com/',
+      github: 'https://github.com/MartinEnke/Masterblog_API',
       preview: '/previews/almanac.jpg',
     },
+  ]
+
+  // ——— Blog (weekly highlights since mid-May; scrollable) ———
+  const blog: BlogEntry[] = [
+    { date: '2025-05-12', title: 'Masterschool — Core Complete', body: 'Wrapped the core curriculum. Built several small apps (auth, REST, CRUD) and sharpened Python + SQL fundamentals.' },
+    { date: '2025-05-19', title: 'GenAI Eng — LLM Theory Deep-Dive', body: 'Covered tokenization, context windows, embeddings, vector search, grounding, and safety. Set up baseline eval notions.' },
+    { date: '2025-05-26', title: 'Prompting & Evals', body: 'Designed prompt patterns for structure/precision. Sketched a light eval harness to sanity-check LLM outputs for schema compliance.' },
+    { date: '2025-06-02', title: 'Kickoff — ZoundZcope AI', body: 'Bootstrapped FastAPI backend and audio pipeline. Planned data model for uploads and per-session analysis.' },
+    { date: '2025-06-09', title: 'Audio Features & UI', body: 'Implemented librosa feature extraction (tempo, spectral stats). Added waveform previews and responsive UI in React.' },
+    { date: '2025-06-16', title: 'Structured AI Critique', body: 'Hooked up OpenAI—structured JSON critique + caching. Added issue tagging and actionable tips format.' },
+    { date: '2025-06-23', title: 'Deployed: The Quiet Almanac', body: 'Made the blog multilingual; added AI moderation, translation, and read-aloud. First successful production deploy.' },
+    { date: '2025-06-30', title: 'Follow-up Chat (ZoundZcope)', body: 'Context-aware follow-ups per upload, token management, and safe truncation logic.' },
+    { date: '2025-07-07', title: 'Multi-Track AI Compare', body: 'Side-by-side AI feedback across versions; session save/restore for producers.' },
+    { date: '2025-07-14', title: 'RAG for Docs & Tutorials', body: 'Chunked docs, built retrieval pipeline, grounded critiques with relevant snippets (less hallucination, more helpfulness).' },
+    { date: '2025-07-21', title: 'Frontend Polish & UX', body: 'Loading states, error boundaries, tighter layout. Reduced time-to-first-insight for users.' },
+    { date: '2025-07-28', title: 'Observability & Prod Hardening', body: 'Better logging, rate limiting, and cold-start tweaks on Render.' },
+    { date: '2025-08-04', title: 'Presentation Prep', body: 'Storyline, demo scripts, README and short screen-captures. Dry-runs with peers.' },
+    { date: '2025-08-11', title: 'ZoundZcope Presentation — ✅', body: 'Presented live; great feedback on A/B compare and RAG usefulness.' },
+    { date: '2025-08-18', title: 'React Sprint — Groovebox', body: 'Built a Web Audio step-sequencer. Mobile-first UI, timing accuracy, and a friendly save flow.' },
+    { date: '2025-08-25', title: 'Groovebox Iteration', body: 'Added swing, metronome, and haptics. Sessions persist in localStorage.' },
+    { date: '2025-09-01', title: 'New Project — AI Promo Agent', body: 'Brief → palette → content pipeline. Prompt composer. Clean PDF export. Solid UX & guardrails (e.g., no emojis in PDFs).' },
+    { date: '2025-09-08', title: 'Polish & Deploy', body: 'Mobile header fixes, disclaimer overlay, favicon, and Vercel deployment.' },
+    { date: '2025-09-15', title: 'Integrated Portfolio', body: 'Added AI Promo Agent to my site with hover previews + a scrollable blog section.' },
   ]
 
   // contact form state
@@ -98,30 +144,19 @@ export default function PortfolioPage() {
         </div>
       )}
       <div className="relative min-h-screen bg-slate-950 text-slate-100 overflow-hidden">
-        {/* Full-viewport background */}
+        {/* BG */}
         <div className="pointer-events-none fixed inset-0">
           <GridShimmer />
         </div>
         <div className="pointer-events-none fixed inset-0 mix-blend-screen opacity-60 [background:radial-gradient(60%_60%_at_50%_40%,rgba(139,92,246,0.10),transparent_70%),radial-gradient(40%_40%_at_80%_20%,rgba(34,211,238,0.08),transparent_70%)]" />
 
         {/* content */}
-        <main
-          className="relative z-10 mx-auto w-full max-w-6xl"
-          style={{ padding: 'calc(var(--cell, 28px) * 0.9)' }}
-        >
-          {/* Hero + Photo */}
-          <motion.section
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 sm:mb-8"
-          >
+        <main className="relative z-10 mx-auto w-full max-w-6xl" style={{ padding: 'calc(var(--cell, 28px) * 0.9)' }}>
+          {/* Hero */}
+          <motion.section initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-6 sm:mb-8">
             <div className="grid grid-cols-12" style={{ gap: 'calc(var(--cell, 28px) * 0.5)' }}>
-              {/* Hero card */}
-              <div
-                className="col-span-12 md:col-span-8 border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20"
-                style={{ padding: 'calc(var(--cell, 28px) * 0.8)' }}
-              >
+              {/* card */}
+              <div className="col-span-12 md:col-span-8 border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20" style={{ padding: 'calc(var(--cell, 28px) * 0.8)' }}>
                 <div className="flex flex-col gap-5 md:gap-6">
                   <div>
                     <h1 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
@@ -132,37 +167,22 @@ export default function PortfolioPage() {
                         Full-Stack &amp; GenAI Developer
                       </span>
                     </h1>
-
                     <p className="mt-3 text-sm sm:text-base text-slate-300">
                       Python · FastAPI/Flask · SQL/PostgreSQL · LLMs (RAG) · React · TypeScript
                     </p>
-
                     <p className="mt-3 text-sm sm:text-base text-slate-300/90">
                       I design clean, scalable APIs and integrate LLMs into real products.
                     </p>
                   </div>
 
                   <div className="flex flex-wrap gap-3">
-                    <a
-                      href="#contact"
-                      className="border border-white/15 bg-white/10 px-4 py-2 text-sm hover:bg-white/15 active:scale-[.99] transition"
-                    >
+                    <a href="#contact" className="border border-white/15 bg-white/10 px-4 py-2 text-sm hover:bg-white/15 active:scale-[.99] transition">
                       Contact
                     </a>
-                    <a
-                      href="https://github.com/MartinEnke"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="border border-white/15 bg-white/10 px-4 py-2 text-sm hover:bg-white/15 active:scale-[.99] transition"
-                    >
+                    <a href="https://github.com/MartinEnke" target="_blank" rel="noopener noreferrer" className="border border-white/15 bg-white/10 px-4 py-2 text-sm hover:bg-white/15 active:scale-[.99] transition">
                       GitHub
                     </a>
-                    <a
-                      href="https://www.linkedin.com/in/martin-enke-/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="border border-white/15 bg-white/10 px-4 py-2 text-sm hover:bg-white/15 active:scale-[.99] transition"
-                    >
+                    <a href="https://www.linkedin.com/in/martin-enke-/" target="_blank" rel="noopener noreferrer" className="border border-white/15 bg-white/10 px-4 py-2 text-sm hover:bg-white/15 active:scale-[.99] transition">
                       LinkedIn
                     </a>
                   </div>
@@ -178,36 +198,16 @@ export default function PortfolioPage() {
               </div>
 
               {/* Photo */}
-              <div
-                className="col-span-12 md:col-span-4 border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20 flex items-center justify-center"
-                style={{ padding: 'calc(var(--cell, 28px) * 0.3)', aspectRatio: '3 / 4' }}
-              >
-                <Image
-                  src="/me.jpg"
-                  alt="Martin Enke"
-                  width={600}
-                  height={800}
-                  className="h-full w-full object-cover"
-                  style={{ filter: 'contrast(1.05) saturate(1.05)' }}
-                  priority
-                />
+              <div className="col-span-12 md:col-span-4 border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20 flex items-center justify-center" style={{ padding: 'calc(var(--cell, 28px) * 0.3)', aspectRatio: '3 / 4' }}>
+                <Image src="/me.jpg" alt="Martin Enke" width={600} height={800} className="h-full w-full object-cover" style={{ filter: 'contrast(1.05) saturate(1.05)' }} priority />
               </div>
             </div>
           </motion.section>
 
           {/* Projects */}
-          <motion.section
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <div
-              className="flex items-center justify-between"
-              style={{ marginBottom: 'calc(var(--cell, 28px) * 0.4)' }}
-            >
-              <h2 className="text-lg sm:text-xl md:text-2xl font-medium tracking-tight">
-                Featured Projects
-              </h2>
+          <motion.section initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
+            <div className="flex items-center justify-between" style={{ marginBottom: 'calc(var(--cell, 28px) * 0.4)' }}>
+              <h2 className="text-lg sm:text-xl md:text-2xl font-medium tracking-tight">Featured Projects</h2>
               <span className="hidden sm:inline text-xs text-slate-400">Vercel / Render</span>
             </div>
 
@@ -218,19 +218,11 @@ export default function PortfolioPage() {
             </div>
           </motion.section>
 
-          {/* Contact */}
-          <motion.section
-            id="contact"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-8"
-          >
+          {/* Contact + Blog */}
+          <motion.section id="contact" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="mt-8">
             <div className="grid grid-cols-12" style={{ gap: 'calc(var(--cell, 28px) * 0.5)' }}>
-              <div
-                className="col-span-12 md:col-span-8 border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20"
-                style={{ padding: 'calc(var(--cell, 28px) * 0.8)' }}
-              >
+              {/* Contact card */}
+              <div className="col-span-12 md:col-span-8 border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20" style={{ padding: 'calc(var(--cell, 28px) * 0.8)' }}>
                 <h3 className="text-xl font-medium tracking-tight mb-3">Contact</h3>
                 <p className="text-slate-300/90 text-sm mb-4">
                   Open to work—please share a few details and I’ll respond promptly.
@@ -306,14 +298,46 @@ export default function PortfolioPage() {
                   </a>
                 </div>
               </div>
+
+              {/* Blog card (scrollable) */}
+              <div className="col-span-12 md:col-span-4 border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20" style={{ padding: 'calc(var(--cell, 28px) * 0.8)' }}>
+                <div className="flex items-center justify-between gap-3 mb-3">
+                  <h3 className="text-xl font-medium tracking-tight">Blog</h3>
+                  <span className="text-[11px] text-slate-400">Weekly notes</span>
+                </div>
+
+                <div className="max-h-[520px] overflow-y-auto pr-1 custom-scroll">
+                  <ul className="flex flex-col gap-3">
+                    {blog.map((b) => (
+                      <li key={b.date} className="border border-white/10 bg-white/5 px-3 py-3">
+                        <div className="text-[11px] uppercase tracking-wide text-slate-400">
+                          {new Date(b.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: '2-digit' })}
+                        </div>
+                        <div className="mt-1 text-sm font-semibold text-slate-100">
+                          {b.title}
+                        </div>
+                        <p className="mt-1 text-sm text-slate-300/90">
+                          {b.body}
+                        </p>
+                        {b.tags?.length ? (
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {b.tags.map((t) => (
+                              <span key={t} className="text-[10px] border border-white/10 bg-white/5 px-1.5 py-0.5 text-slate-300">
+                                #{t}
+                              </span>
+                            ))}
+                          </div>
+                        ) : null}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
           </motion.section>
 
           {/* Footer */}
-          <div
-            className="text-center text-xs text-slate-500"
-            style={{ marginTop: 'calc(var(--cell, 28px) * 0.9)' }}
-          >
+          <div className="text-center text-xs text-slate-500" style={{ marginTop: 'calc(var(--cell, 28px) * 0.9)' }}>
             © {new Date().getFullYear()} Martin Enke — Built with Next.js + Tailwind. Deployed on Vercel.
           </div>
         </main>
@@ -322,6 +346,7 @@ export default function PortfolioPage() {
   )
 }
 
+/* ---------------- ProjectCard (unchanged except your existing logic) ---------------- */
 function ProjectCard({ project }: { project: Project }) {
   const [isCoarse, setIsCoarse] = React.useState(false)
   const [mounted, setMounted] = React.useState(false)
@@ -340,7 +365,7 @@ function ProjectCard({ project }: { project: Project }) {
   }, [])
 
   const PREVIEW_BASE = 260
-  const SCALE = 1.40 // +15%; tweak here
+  const SCALE = 1.80
   const PREVIEW_WIDTH = Math.round(PREVIEW_BASE * SCALE)
   const GAP = 16
   const PAD = 12
@@ -352,7 +377,6 @@ function ProjectCard({ project }: { project: Project }) {
     let left = r.right + GAP
     let top = r.top - 8
 
-    // flip to the left if going off the right edge
     if (left + PREVIEW_WIDTH + PAD > window.innerWidth) {
       left = Math.max(PAD, r.left - PREVIEW_WIDTH - GAP)
     }
@@ -383,25 +407,50 @@ function ProjectCard({ project }: { project: Project }) {
         <p className="mt-2 text-sm text-slate-300/90">{project.desc}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {project.tech.map((t) => (
-            <span
-              key={t}
-              className="text-[11px] border border-white/10 bg-white/5 px-2 py-1 text-slate-300"
-            >
+            <span key={t} className="text-[11px] border border-white/10 bg-white/5 px-2 py-1 text-slate-300">
               {t}
             </span>
           ))}
         </div>
+
+        {(project.href || project.github) && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {project.href && (
+              <button
+                className="border border-white/15 bg-white/10 px-3 py-1.5 text-xs hover:bg-white/15"
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  window.open(project.href, '_blank', 'noopener,noreferrer')
+                }}
+              >
+                Live
+              </button>
+            )}
+            {project.github && (
+              <button
+                className="border border-white/15 bg-white/10 px-3 py-1.5 text-xs hover:bg-white/15"
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  window.open(project.github, '_blank', 'noopener,noreferrer')
+                }}
+              >
+                GitHub
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )
 
-  // Render either <a> or <div> wrapper (typed, no `any`)
   const CardWrapper = project.href ? (
     <a
       href={project.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group col-span-12 md:col-span-6 lg:col-span-4 block"
+      className="group col-span-12 md:col-span-6 lg:col-span-6 block"
       onMouseEnter={onEnter}
       onMouseMove={updatePos}
       onMouseLeave={onLeave}
@@ -410,7 +459,7 @@ function ProjectCard({ project }: { project: Project }) {
     </a>
   ) : (
     <div
-      className="group col-span-12 md:col-span-6 lg:col-span-4"
+      className="group col-span-12 md:col-span-6 lg:col-span-6"
       onMouseEnter={onEnter}
       onMouseMove={updatePos}
       onMouseLeave={onLeave}
@@ -422,32 +471,17 @@ function ProjectCard({ project }: { project: Project }) {
   return (
     <>
       {CardWrapper}
-
-      {/* Portal preview (desktop only) */}
       {mounted && show && !isCoarse && (project.preview || project.previewVideo) &&
         createPortal(
           <div
             className="pointer-events-none fixed z-[9999] transition duration-150 ease-out"
             style={{ left: pos.left, top: pos.top, width: PREVIEW_WIDTH }}
           >
-            <div className="rounded-lg overflow-visible border border-white/15 shadow-2xl shadow-black/40 bg-black/40">
+            <div className="preview-glow rounded-xl overflow-visible border border-white/15 shadow-2xl shadow-black/40 bg-black/40">
               {project.previewVideo ? (
-                <video
-                  src={project.previewVideo}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="block w-full h-auto"
-                />
+                <video src={project.previewVideo} autoPlay loop muted playsInline className="block w-full h-auto" />
               ) : (
-                // Plain <img> preserves full height (no crop)
-                <img
-                  src={project.preview!}
-                  alt="" // decorative
-                  className="block w-full h-auto"
-                  decoding="async"
-                />
+                <img src={project.preview!} alt="" className="block w-full h-auto" decoding="async" />
               )}
             </div>
           </div>,
@@ -528,25 +562,15 @@ function GridShimmer() {
     window.addEventListener('touchmove', onTouch, { passive: true })
     window.addEventListener('touchend', onLeave)
 
-    // ---------- sweep setup ----------
+    // ---------- shader-ish grid ----------
     const OVERLAP_SEC = 1.5
 
-    type Pass = {
-      angle: number
-      pos: number
-      hueFrom: number
-      hueTo: number
-      hueT: number
-    }
-
+    type Pass = { angle: number; pos: number; hueFrom: number; hueTo: number; hueT: number }
     const passes: Pass[] = []
 
-    const easeInOutCubic = (t: number): number =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
-
-    const randomAngle = (): number => Math.random() * Math.PI * 2
-    const randomBlueYellowHue = (): number =>
-      Math.random() < 0.5 ? 48 + Math.random() * 12 : 200 + Math.random() * 35
+    const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
+    const randomAngle = () => Math.random() * Math.PI * 2
+    const randomBlueYellowHue = () => (Math.random() < 0.5 ? 48 + Math.random() * 12 : 200 + Math.random() * 35)
 
     const hslToRgb = (h: number, s: number, l: number): [number, number, number] => {
       const a = s * Math.min(l, 1 - l)
@@ -557,8 +581,7 @@ function GridShimmer() {
       }
       return [f(0), f(8), f(4)]
     }
-
-    const lerp = (a: number, b: number, t: number): number => a + (b - a) * t
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t
 
     const spawnPass = (w: number, h: number, margin: number): Pass => {
       const angle = randomAngle()
@@ -578,13 +601,11 @@ function GridShimmer() {
     })
 
     let last = performance.now()
-
     const draw = (now: number): void => {
-      if (!running.current) {
+      if (document.visibilityState !== 'visible') {
         requestAnimationFrame(draw)
         return
       }
-
       const dt = Math.max(0.001, (now - last) / 1000)
       last = now
 
@@ -691,9 +712,7 @@ function GridShimmer() {
             }
           }
 
-          let r = 255
-          let g = 255
-          let b = 255
+          let r = 255, g = 255, b = 255
           if (sTotal > 0) {
             r = Math.round(rAcc / sTotal)
             g = Math.round(gAcc / sTotal)
