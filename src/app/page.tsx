@@ -17,17 +17,28 @@ type Project = {
 }
 
 type BlogEntry = {
-  date: string     // ISO is fine; we render as plain text
+  date: string
   title: string
   body: string
   tags?: string[]
   link?: string
 }
 
+// Stable blog date formatter (same on SSR & client)
+const BLOG_DTF = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: '2-digit',
+  timeZone: 'UTC',
+});
+function formatBlogDate(isoDate: string) {
+  // Force midnight UTC so there's no TZ drift
+  return BLOG_DTF.format(new Date(isoDate + 'T00:00:00Z'));
+}
+
 export default function PortfolioPage() {
   const isWip = process.env.NEXT_PUBLIC_WIP === 'true'
 
-  // ——— Projects (2×2 grid; AI Promo Agent second) ———
   const projects: Project[] = [
     {
       title: 'ZoundZcope AI',
@@ -70,7 +81,6 @@ export default function PortfolioPage() {
     },
   ]
 
-  // ——— Blog (weekly highlights since mid-May; scrollable) ———
   const blog: BlogEntry[] = [
     { date: '2025-05-12', title: 'Masterschool — Core Complete', body: 'Wrapped the core curriculum. Built several small apps (auth, REST, CRUD) and sharpened Python + SQL fundamentals.' },
     { date: '2025-05-19', title: 'GenAI Eng — LLM Theory Deep-Dive', body: 'Covered tokenization, context windows, embeddings, vector search, grounding, and safety. Set up baseline eval notions.' },
@@ -93,7 +103,6 @@ export default function PortfolioPage() {
     { date: '2025-09-15', title: 'Integrated Portfolio', body: 'Added AI Promo Agent to my site with hover previews + a scrollable blog section.' },
   ]
 
-  // contact form state
   const [sending, setSending] = useState<false | 'sending' | 'ok' | 'error'>(false)
   const [errorMsg, setErrorMsg] = useState('')
 
@@ -104,7 +113,7 @@ export default function PortfolioPage() {
     const name = String(fd.get('name') || '').trim()
     const email = String(fd.get('email') || '').trim()
     const message = String(fd.get('message') || '').trim()
-    const company = String(fd.get('company') || '').trim() // honeypot
+    const company = String(fd.get('company') || '').trim()
 
     if (company) {
       setSending('ok')
@@ -139,55 +148,66 @@ export default function PortfolioPage() {
   return (
     <>
       {isWip && (
-        <div className="fixed top-2 right-2 z-50 border border-white/15 bg-white/10 px-2 py-1 text-[11px] text-slate-200 tracking-wide">
+        <div className="fixed top-2 right-2 z-50 border border-white/20 bg-white/15 px-2 py-1 text-[11px] text-slate-100 tracking-wide">
           WIP
         </div>
       )}
-      <div className="relative min-h-screen bg-slate-950 text-slate-100 overflow-hidden">
-        {/* BG */}
+
+      {/* brighter page bg */}
+      <div className="relative min-h-screen bg-slate-900 text-slate-100 overflow-hidden">
+        {/* BG layers */}
         <div className="pointer-events-none fixed inset-0">
           <GridShimmer />
         </div>
-        <div className="pointer-events-none fixed inset-0 mix-blend-screen opacity-60 [background:radial-gradient(60%_60%_at_50%_40%,rgba(139,92,246,0.10),transparent_70%),radial-gradient(40%_40%_at_80%_20%,rgba(34,211,238,0.08),transparent_70%)]" />
+        {/* stronger overlay tint */}
+        {/* NEW: subtle dark veil (multiplies with the canvas; content sits above, unaffected) */}
+<div className="pointer-events-none fixed inset-0 mix-blend-multiply opacity-70
+  [background:
+    radial-gradient(120%_120%_at_50%_30%,rgba(0,0,0,0.55),transparent_68%),
+    radial-gradient(120%_130%_at_10%_90%,rgba(0,0,0,0.35),transparent_70%)
+  ]"
+/>
+
+
 
         {/* content */}
         <main className="relative z-10 mx-auto w-full max-w-6xl" style={{ padding: 'calc(var(--cell, 28px) * 0.9)' }}>
           {/* Hero */}
           <motion.section initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-6 sm:mb-8">
             <div className="grid grid-cols-12" style={{ gap: 'calc(var(--cell, 28px) * 0.5)' }}>
-              {/* card */}
-              <div className="col-span-12 md:col-span-8 border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20" style={{ padding: 'calc(var(--cell, 28px) * 0.8)' }}>
+              {/* card (brighter) */}
+              <div className="col-span-12 md:col-span-8 border border-white/15 bg-white/10 backdrop-blur-xl shadow-lg shadow-black/30" style={{ padding: 'calc(var(--cell, 28px) * 0.8)' }}>
                 <div className="flex flex-col gap-5 md:gap-6">
                   <div>
                     <h1 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
-                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-200 to-cyan-200 text-[1.5em] leading-tight">
+                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-100 to-cyan-100 text-[1.5em] leading-tight">
                         Martin Enke
                       </span>
-                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-200 to-cyan-200">
+                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-100 to-cyan-100">
                         Full-Stack &amp; GenAI Developer
                       </span>
                     </h1>
-                    <p className="mt-3 text-sm sm:text-base text-slate-300">
+                    <p className="mt-3 text-sm sm:text-base text-slate-200">
                       Python · FastAPI/Flask · SQL/PostgreSQL · LLMs (RAG) · React · TypeScript
                     </p>
-                    <p className="mt-3 text-sm sm:text-base text-slate-300/90">
+                    <p className="mt-3 text-sm sm:text-base text-slate-200/95">
                       I design clean, scalable APIs and integrate LLMs into real products.
                     </p>
                   </div>
 
                   <div className="flex flex-wrap gap-3">
-                    <a href="#contact" className="border border-white/15 bg-white/10 px-4 py-2 text-sm hover:bg-white/15 active:scale-[.99] transition">
+                    <a href="#contact" className="border border-white/20 bg-white/15 px-4 py-2 text-sm hover:bg-white/20 active:scale-[.99] transition">
                       Contact
                     </a>
-                    <a href="https://github.com/MartinEnke" target="_blank" rel="noopener noreferrer" className="border border-white/15 bg-white/10 px-4 py-2 text-sm hover:bg-white/15 active:scale-[.99] transition">
+                    <a href="https://github.com/MartinEnke" target="_blank" rel="noopener noreferrer" className="border border-white/20 bg-white/15 px-4 py-2 text-sm hover:bg-white/20 active:scale-[.99] transition">
                       GitHub
                     </a>
-                    <a href="https://www.linkedin.com/in/martin-enke-/" target="_blank" rel="noopener noreferrer" className="border border-white/15 bg-white/10 px-4 py-2 text-sm hover:bg-white/15 active:scale-[.99] transition">
+                    <a href="https://www.linkedin.com/in/martin-enke-/" target="_blank" rel="noopener noreferrer" className="border border-white/20 bg-white/15 px-4 py-2 text-sm hover:bg-white/20 active:scale-[.99] transition">
                       LinkedIn
                     </a>
                   </div>
 
-                  <div className="text-sm text-slate-300/90">
+                  <div className="text-sm text-slate-200/95">
                     <p>
                       I’m a Python-first backend &amp; GenAI dev with roots in music. Built two
                       LLM-powered full-stack apps and a playful React groovebox. Backend-led,
@@ -197,9 +217,17 @@ export default function PortfolioPage() {
                 </div>
               </div>
 
-              {/* Photo */}
-              <div className="col-span-12 md:col-span-4 border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20 flex items-center justify-center" style={{ padding: 'calc(var(--cell, 28px) * 0.3)', aspectRatio: '3 / 4' }}>
-                <Image src="/me.jpg" alt="Martin Enke" width={600} height={800} className="h-full w-full object-cover" style={{ filter: 'contrast(1.05) saturate(1.05)' }} priority />
+              {/* Photo (slightly more punch) */}
+              <div className="col-span-12 md:col-span-4 border border-white/15 bg-white/10 backdrop-blur-xl shadow-lg shadow-black/30 flex items-center justify-center" style={{ padding: 'calc(var(--cell, 28px) * 0.3)', aspectRatio: '3 / 4' }}>
+                <Image
+                  src="/me.jpg"
+                  alt="Martin Enke"
+                  width={600}
+                  height={800}
+                  className="h-full w-full object-cover"
+                  style={{ filter: 'contrast(1.08) saturate(1.08)' }}
+                  priority
+                />
               </div>
             </div>
           </motion.section>
@@ -208,7 +236,7 @@ export default function PortfolioPage() {
           <motion.section initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
             <div className="flex items-center justify-between" style={{ marginBottom: 'calc(var(--cell, 28px) * 0.4)' }}>
               <h2 className="text-lg sm:text-xl md:text-2xl font-medium tracking-tight">Featured Projects</h2>
-              <span className="hidden sm:inline text-xs text-slate-400">Vercel / Render</span>
+              <span className="hidden sm:inline text-xs text-slate-300">Vercel / Render</span>
             </div>
 
             <div className="grid grid-cols-12" style={{ gap: 'calc(var(--cell, 28px) * 0.5)' }}>
@@ -221,15 +249,14 @@ export default function PortfolioPage() {
           {/* Contact + Blog */}
           <motion.section id="contact" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="mt-8">
             <div className="grid grid-cols-12" style={{ gap: 'calc(var(--cell, 28px) * 0.5)' }}>
-              {/* Contact card */}
-              <div className="col-span-12 md:col-span-8 border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20" style={{ padding: 'calc(var(--cell, 28px) * 0.8)' }}>
+              {/* Contact (brighter) */}
+              <div className="col-span-12 md:col-span-8 border border-white/15 bg-white/10 backdrop-blur-xl shadow-lg shadow-black/30" style={{ padding: 'calc(var(--cell, 28px) * 0.8)' }}>
                 <h3 className="text-xl font-medium tracking-tight mb-3">Contact</h3>
-                <p className="text-slate-300/90 text-sm mb-4">
+                <p className="text-slate-200/95 text-sm mb-4">
                   Open to work—please share a few details and I’ll respond promptly.
                 </p>
 
                 <form onSubmit={onSubmit} className="grid grid-cols-12 gap-3">
-                  {/* Honeypot */}
                   <div className="hidden">
                     <label>
                       Company
@@ -237,31 +264,31 @@ export default function PortfolioPage() {
                     </label>
                   </div>
 
-                  <label className="col-span-12 md:col-span-6 text-xs text-slate-300/80">
+                  <label className="col-span-12 md:col-span-6 text-xs text-slate-200/90">
                     Name
                     <input
                       name="name"
-                      className="mt-1 w-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-100 outline-none focus:border-white/20"
+                      className="mt-1 w-full border border-white/15 bg-white/10 px-3 py-2 text-sm text-slate-50 outline-none focus:border-white/25"
                       placeholder="Your name"
                       required
                     />
                   </label>
-                  <label className="col-span-12 md:col-span-6 text-xs text-slate-300/80">
+                  <label className="col-span-12 md:col-span-6 text-xs text-slate-200/90">
                     Email
                     <input
                       name="email"
                       type="email"
-                      className="mt-1 w-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-100 outline-none focus:border-white/20"
+                      className="mt-1 w-full border border-white/15 bg-white/10 px-3 py-2 text-sm text-slate-50 outline-none focus:border-white/25"
                       placeholder="you@example.com"
                       required
                     />
                   </label>
-                  <label className="col-span-12 text-xs text-slate-300/80">
+                  <label className="col-span-12 text-xs text-slate-200/90">
                     Message
                     <textarea
                       name="message"
                       rows={5}
-                      className="mt-1 w-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-100 outline-none focus:border-white/20 resize-y"
+                      className="mt-1 w-full border border-white/15 bg-white/10 px-3 py-2 text-sm text-slate-50 outline-none focus:border-white/25 resize-y"
                       placeholder="What can I help you with?"
                       required
                     />
@@ -270,12 +297,12 @@ export default function PortfolioPage() {
                     <button
                       type="submit"
                       disabled={sending === 'sending'}
-                      className="border border-white/15 bg-white/10 px-4 py-2 text-sm hover:bg-white/15 disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="border border-white/20 bg-white/15 px-4 py-2 text-sm hover:bg-white/20 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       {sending === 'sending' ? 'Sending…' : 'Send message'}
                     </button>
                     {sending === 'ok' && (
-                      <span className="text-xs text-green-300">Thanks! Your message has been sent.</span>
+                      <span className="text-xs text-emerald-300">Thanks! Your message has been sent.</span>
                     )}
                     {sending === 'error' && (
                       <span className="text-xs text-rose-300">{errorMsg}</span>
@@ -283,46 +310,42 @@ export default function PortfolioPage() {
                   </div>
                 </form>
 
-                <div className="mt-4 text-xs text-slate-400">
+                <div className="mt-4 text-xs text-slate-300">
                   Prefer socials?{' '}
                   <a href="https://github.com/MartinEnke" target="_blank" className="underline">
                     GitHub
                   </a>
                   {' · '}
-                  <a
-                    href="https://www.linkedin.com/in/martin-enke-/"
-                    target="_blank"
-                    className="underline"
-                  >
+                  <a href="https://www.linkedin.com/in/martin-enke-/" target="_blank" className="underline">
                     LinkedIn
                   </a>
                 </div>
               </div>
 
-              {/* Blog card (scrollable) */}
-              <div className="col-span-12 md:col-span-4 border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20" style={{ padding: 'calc(var(--cell, 28px) * 0.8)' }}>
+              {/* Blog (brighter) */}
+              <div className="col-span-12 md:col-span-4 border border-white/15 bg-white/10 backdrop-blur-xl shadow-lg shadow-black/30" style={{ padding: 'calc(var(--cell, 28px) * 0.8)' }}>
                 <div className="flex items-center justify-between gap-3 mb-3">
                   <h3 className="text-xl font-medium tracking-tight">Blog</h3>
-                  <span className="text-[11px] text-slate-400">Weekly notes</span>
+                  <span className="text-[11px] text-slate-300">Weekly notes</span>
                 </div>
 
                 <div className="max-h-[520px] overflow-y-auto pr-1 custom-scroll">
                   <ul className="flex flex-col gap-3">
                     {blog.map((b) => (
-                      <li key={b.date} className="border border-white/10 bg-white/5 px-3 py-3">
-                        <div className="text-[11px] uppercase tracking-wide text-slate-400">
-                          {new Date(b.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: '2-digit' })}
+                      <li key={b.date} className="border border-white/15 bg-white/10 px-3 py-3">
+                        <div className="text-[11px] uppercase tracking-wide text-slate-300">
+                        {formatBlogDate(b.date)}
                         </div>
-                        <div className="mt-1 text-sm font-semibold text-slate-100">
+                        <div className="mt-1 text-sm font-semibold text-slate-50">
                           {b.title}
                         </div>
-                        <p className="mt-1 text-sm text-slate-300/90">
+                        <p className="mt-1 text-sm text-slate-200/95">
                           {b.body}
                         </p>
                         {b.tags?.length ? (
                           <div className="mt-2 flex flex-wrap gap-2">
                             {b.tags.map((t) => (
-                              <span key={t} className="text-[10px] border border-white/10 bg-white/5 px-1.5 py-0.5 text-slate-300">
+                              <span key={t} className="text-[10px] border border-white/15 bg-white/10 px-1.5 py-0.5 text-slate-200">
                                 #{t}
                               </span>
                             ))}
@@ -337,7 +360,7 @@ export default function PortfolioPage() {
           </motion.section>
 
           {/* Footer */}
-          <div className="text-center text-xs text-slate-500" style={{ marginTop: 'calc(var(--cell, 28px) * 0.9)' }}>
+          <div className="text-center text-xs text-slate-300" style={{ marginTop: 'calc(var(--cell, 28px) * 0.9)' }}>
             © {new Date().getFullYear()} Martin Enke — Built with Next.js + Tailwind. Deployed on Vercel.
           </div>
         </main>
@@ -346,7 +369,7 @@ export default function PortfolioPage() {
   )
 }
 
-/* ---------------- ProjectCard (unchanged except your existing logic) ---------------- */
+/* ---------------- ProjectCard ---------------- */
 function ProjectCard({ project }: { project: Project }) {
   const [isCoarse, setIsCoarse] = React.useState(false)
   const [mounted, setMounted] = React.useState(false)
@@ -394,20 +417,20 @@ function ProjectCard({ project }: { project: Project }) {
   const CardInner = (
     <div
       ref={cardRef}
-      className="relative border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20 h-full"
+      className="relative border border-white/15 bg-white/10 backdrop-blur-xl shadow-lg shadow-black/30 h-full"
       style={{ padding: 'calc(var(--cell, 28px) * 0.7)' }}
     >
       <div className="relative z-10">
         <div className="flex items-center justify-between gap-3">
-          <h3 className="text-base sm:text-lg font-semibold">{project.title}</h3>
-          <span className="text-[10px] uppercase tracking-wider border border-white/15 bg-white/10 px-2 py-1 text-slate-300">
+          <h3 className="text-base sm:text-lg font-semibold text-slate-50">{project.title}</h3>
+          <span className="text-[10px] uppercase tracking-wider border border-white/20 bg-white/15 px-2 py-1 text-slate-100">
             {project.hosted}
           </span>
         </div>
-        <p className="mt-2 text-sm text-slate-300/90">{project.desc}</p>
+        <p className="mt-2 text-sm text-slate-200/95">{project.desc}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {project.tech.map((t) => (
-            <span key={t} className="text-[11px] border border-white/10 bg-white/5 px-2 py-1 text-slate-300">
+            <span key={t} className="text-[11px] border border-white/15 bg-white/10 px-2 py-1 text-slate-100">
               {t}
             </span>
           ))}
@@ -417,7 +440,7 @@ function ProjectCard({ project }: { project: Project }) {
           <div className="mt-4 flex flex-wrap gap-2">
             {project.href && (
               <button
-                className="border border-white/15 bg-white/10 px-3 py-1.5 text-xs hover:bg-white/15"
+                className="border border-white/20 bg-white/15 px-3 py-1.5 text-xs hover:bg-white/20"
                 onClick={(e) => {
                   e.preventDefault()
                   e.stopPropagation()
@@ -429,7 +452,7 @@ function ProjectCard({ project }: { project: Project }) {
             )}
             {project.github && (
               <button
-                className="border border-white/15 bg-white/10 px-3 py-1.5 text-xs hover:bg-white/15"
+                className="border border-white/20 bg-white/15 px-3 py-1.5 text-xs hover:bg-white/20"
                 onClick={(e) => {
                   e.preventDefault()
                   e.stopPropagation()
@@ -477,7 +500,7 @@ function ProjectCard({ project }: { project: Project }) {
             className="pointer-events-none fixed z-[9999] transition duration-150 ease-out"
             style={{ left: pos.left, top: pos.top, width: PREVIEW_WIDTH }}
           >
-            <div className="preview-glow rounded-xl overflow-visible border border-white/15 shadow-2xl shadow-black/40 bg-black/40">
+            <div className="preview-glow rounded-xl overflow-visible border border-white/20 shadow-2xl shadow-black/50 bg-black/30">
               {project.previewVideo ? (
                 <video src={project.previewVideo} autoPlay loop muted playsInline className="block w-full h-auto" />
               ) : (
@@ -562,16 +585,14 @@ function GridShimmer() {
     window.addEventListener('touchmove', onTouch, { passive: true })
     window.addEventListener('touchend', onLeave)
 
-    // ---------- shader-ish grid ----------
+    // shader-ish grid (unchanged logic)
     const OVERLAP_SEC = 1.5
-
     type Pass = { angle: number; pos: number; hueFrom: number; hueTo: number; hueT: number }
     const passes: Pass[] = []
 
     const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
     const randomAngle = () => Math.random() * Math.PI * 2
     const randomBlueYellowHue = () => (Math.random() < 0.5 ? 48 + Math.random() * 12 : 200 + Math.random() * 35)
-
     const hslToRgb = (h: number, s: number, l: number): [number, number, number] => {
       const a = s * Math.min(l, 1 - l)
       const f = (n: number) => {
@@ -679,7 +700,7 @@ function GridShimmer() {
         }
       })
 
-      const tintAlphaScale = 0.42
+      const tintAlphaScale = 0.55 // a touch brighter
 
       for (let rI = 0; rI < rows; rI++) {
         for (let cI = 0; cI < cols; cI++) {
@@ -694,11 +715,7 @@ function GridShimmer() {
             glow = Math.exp(-dist2 / (2 * sigma * sigma))
           }
 
-          let sTotal = 0
-          let rAcc = 0
-          let gAcc = 0
-          let bAcc = 0
-
+          let sTotal = 0, rAcc = 0, gAcc = 0, bAcc = 0
           for (const { p, mixT, color, ux, uy } of passCache) {
             const proj = x * ux + y * uy
             const dxs = Math.abs(proj - p.pos)
@@ -720,13 +737,14 @@ function GridShimmer() {
           }
 
           const noise = (Math.sin((x + y) * 0.05 + now * 0.0018) + 1) * 0.02
-          let alpha = 0.026 + Math.min(1, sTotal) * 0.33 + glow * 0.45 + noise
-          alpha = Math.max(0.02, Math.min(0.65, alpha))
+          let alpha = 0.035 + Math.min(1, sTotal) * 0.36 + glow * 0.48 + noise
+          alpha = Math.max(0.03, Math.min(0.7, alpha))
 
-          ctx.fillStyle = `rgba(${r},${g},${b},${alpha * tintAlphaScale})`
+          const a = alpha * tintAlphaScale
+          ctx.fillStyle = `rgba(${r},${g},${b},${a})`
           ctx.fillRect(x - cell / 2 + 0.5, y - cell / 2 + 0.5, cell - 1, cell - 1)
 
-          ctx.strokeStyle = 'rgba(255,255,255,0.04)'
+          ctx.strokeStyle = 'rgba(255,255,255,0.06)'
           ctx.strokeRect(x - cell / 2 + 0.5, y - cell / 2 + 0.5, cell - 1, cell - 1)
         }
       }
