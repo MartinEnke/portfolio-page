@@ -179,20 +179,28 @@ export default function PortfolioPage() {
               <div className="col-span-12 md:col-span-8 border border-white/15 bg-white/10 backdrop-blur-xl shadow-lg shadow-black/30" style={{ padding: 'calc(var(--cell, 28px) * 0.8)' }}>
                 <div className="flex flex-col gap-5 md:gap-6">
                   <div>
-                    <h1 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
-                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-100 to-cyan-100 text-[1.5em] leading-tight">
-                        Martin Enke
-                      </span>
-                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-100 to-cyan-100">
-                        Full-Stack &amp; GenAI Developer
-                      </span>
-                    </h1>
+                  <h1 className="font-semibold tracking-tight leading-[1.15]">
+  {/* Name — bigger */}
+  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-200 to-cyan-200
+                   text-3xl sm:text-5xl md:text-6xl">
+    Martin Enke
+  </span>
+
+  {/* Title — smaller, safe descenders */}
+  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-200 to-cyan-200
+                 text-2xl sm:text-3xl md:text-5xl leading-[1.25] pb-[3px]">
+  Full-stack & GenAI Engineer
+</span>
+
+</h1>
+
                     <p className="mt-3 text-sm sm:text-base text-slate-200">
-                      Python · FastAPI/Flask · SQL/PostgreSQL · LLMs (RAG) · React · TypeScript
-                    </p>
-                    <p className="mt-3 text-sm sm:text-base text-slate-200/95">
-                      I design clean, scalable APIs and integrate LLMs into real products.
-                    </p>
+                    Python · FastAPI/Flask · SQL/PostgreSQL · LLMs (RAG) · React · TypeScript
+</p>
+<p className="mt-3 text-sm sm:text-base text-slate-200/95">
+I design clean, scalable APIs and integrate LLM features into real products.
+</p>
+<br />
                   </div>
 
                   <div className="flex flex-wrap gap-3">
@@ -208,12 +216,16 @@ export default function PortfolioPage() {
                   </div>
 
                   <div className="text-sm text-slate-200/95">
-                    <p>
-                      I’m a Python-first backend &amp; GenAI dev with roots in music. Built two
-                      LLM-powered full-stack apps and a playful React groovebox. Backend-led,
-                      frontend-curious.
-                    </p>
+                  <div className="text-sm text-slate-200/95">
                   </div>
+  <p>
+    I’m a Python-first backend & GenAI dev with roots in music. <br />Built three LLM-powered apps
+    and a playful React groovebox. Backend-led, frontend-curious.
+  </p> <br />
+  <p className="mt-3 text-s s:text-base text-slate-200/95">
+    Open to <b>junior/entry-level</b> roles — onsite, hybrid, or remote.
+  </p>
+</div>
                 </div>
               </div>
 
