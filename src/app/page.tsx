@@ -44,7 +44,7 @@ export default function PortfolioPage() {
       title: 'ZoundZcope AI',
       desc:
         'Audio analysis & AI feedback for producers: spectral metrics, structured critique, follow-ups, A/B AI compare, and RAG docs.',
-      tech: ['Python', 'FastAPI', 'SQLAlchemy', 'OpenAI API', 'librosa', 'Tailwind'],
+      tech: ['Python', 'FastAPI', 'SQLAlchemy', 'OpenAI API', 'FAISS', 'Tailwind'],
       hosted: 'Render',
       href: 'https://zoundzcope-ai.onrender.com/',
       github: 'https://github.com/MartinEnke/ZoundZcope_AI',
