@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   // Use your production domain so relative URLs (e.g. OG) resolve correctly
   metadataBase: new URL('https://martinenke.vercel.app'),
+  
 
   title: {
     default: 'Martin Enke — Full-stack & GenAI Engineer',

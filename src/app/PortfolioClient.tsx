@@ -9,9 +9,11 @@ type Project = {
   title: string
   desc: string
   tech: string[]
-  hosted: string
+  hosted?: string
   href?: string
   github?: string
+  githubFrontend?: string
+  githubBackend?: string
   preview?: string
   previewVideo?: string
 }
@@ -40,6 +42,7 @@ export default function PortfolioClient() {
   const isWip = process.env.NEXT_PUBLIC_WIP === 'true'
 
   const projects: Project[] = [
+    // Existing projects
     {
       title: 'ZoundZcope AI',
       desc:
@@ -79,6 +82,30 @@ export default function PortfolioClient() {
       github: 'https://github.com/MartinEnke/Masterblog_API',
       preview: '/previews/almanac.jpg',
     },
+    // NEW: Orbital RL + Solar System (no live URL, two GitHub buttons, preview image)
+    {
+      title: 'Orbital - Reinforcement Learning',
+      desc:
+        'Interactive 3D viz of an RL spacecraft flying in a Sun-centered field with Keplerian planets. A/B compare Random vs PPO, split view, analytics, and GPT explanations.',
+      tech: ['Python', 'Gymnasium', 'Stable-Baselines3', 'React', 'Three.js', '@react-three/fiber', 'Tailwind', 'Node/Express', 'OpenAI API'],
+      hosted: 'Local',
+      // no href (not deployed)
+      githubFrontend: 'https://github.com/MartinEnke/orbital-frontend',
+      githubBackend: 'https://github.com/MartinEnke/orbital-rl',
+      preview: '/previews/orbital.png', // place orbital.png in /public
+    },
+    // NEW: Orbital RL + Solar System (no live URL, two GitHub buttons, preview image)
+    {
+      title: 'Coming ',
+      desc:
+        'Soon',
+      tech: [''],
+      hosted: 'Local',
+      // no href (not deployed)
+      githubFrontend: '',
+      githubBackend: '',
+      preview: '', // place orbital.png in /public
+    },
   ]
 
   const blog: BlogEntry[] = [
@@ -101,6 +128,9 @@ export default function PortfolioClient() {
     { date: '2025-09-01', title: 'New Project — AI Promo Agent', body: 'Brief → palette → content pipeline. Prompt composer. Clean PDF export. Solid UX & guardrails (e.g., no emojis in PDFs).' },
     { date: '2025-09-08', title: 'Polish & Deploy', body: 'Mobile header fixes, disclaimer overlay, favicon, and Vercel deployment.' },
     { date: '2025-09-15', title: 'Integrated Portfolio', body: 'Added AI Promo Agent to my site with hover previews + a scrollable blog section.' },
+    { date: '2025-09-21', title: 'Orbital RL — Kickoff & Baselines', body: 'Split the project into two repos (orbital-rl / orbital-frontend). Wrote a clean Gymnasium env, random-policy rollout script, and a PPO training/eval path. Generated first JSON rollouts and a tiny Node/Express LLM proxy for explanations. Baseline achieved: Random vs PPO shows early separation.' },
+    { date: '2025-09-29', title: 'Orbital RL — Split View, Sparklines, Explain', body: 'Frontend now has A|B split view with a single synced timeline, colored event markers, and sparklines (reward, fuel, radial error, v-tan error). Added “Explain last 10s” summary to the LLM panel, polished UI (scientific cards)' },
+
   ]
 
   const [sending, setSending] = useState<false | 'sending' | 'ok' | 'error'>(false)
@@ -242,7 +272,7 @@ export default function PortfolioClient() {
           <motion.section initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
             <div className="flex items-center justify-between" style={{ marginBottom: 'calc(var(--cell, 28px) * 0.4)' }}>
               <h2 className="text-lg sm:text-xl md:text-2xl font-medium tracking-tight">Featured Projects</h2>
-              <span className="hidden sm:inline text-xs text-slate-300">Vercel / Render</span>
+              <span className="hidden sm:inline text-xs text-slate-300">Vercel / Render / Local</span>
             </div>
 
             <div className="grid grid-cols-12" style={{ gap: 'calc(var(--cell, 28px) * 0.5)' }}>
@@ -429,9 +459,11 @@ function ProjectCard({ project }: { project: Project }) {
       <div className="relative z-10">
         <div className="flex items-center justify-between gap-3">
           <h3 className="text-base sm:text-lg font-semibold text-slate-50">{project.title}</h3>
-          <span className="text-[10px] uppercase tracking-wider border border-white/20 bg-white/15 px-2 py-1 text-slate-100">
-            {project.hosted}
-          </span>
+          {project.hosted ? (
+            <span className="text-[10px] uppercase tracking-wider border border-white/20 bg-white/15 px-2 py-1 text-slate-100">
+              {project.hosted}
+            </span>
+          ) : null}
         </div>
         <p className="mt-2 text-sm text-slate-200/95">{project.desc}</p>
         <div className="mt-4 flex flex-wrap gap-2">
@@ -442,7 +474,7 @@ function ProjectCard({ project }: { project: Project }) {
           ))}
         </div>
 
-        {(project.href || project.github) && (
+        {(project.href || project.github || project.githubFrontend || project.githubBackend) && (
           <div className="mt-4 flex flex-wrap gap-2">
             {project.href && (
               <button
@@ -450,7 +482,7 @@ function ProjectCard({ project }: { project: Project }) {
                 onClick={(e) => {
                   e.preventDefault()
                   e.stopPropagation()
-                  window.open(project.href, '_blank', 'noopener,noreferrer')
+                  window.open(project.href!, '_blank', 'noopener,noreferrer')
                 }}
               >
                 Live
@@ -462,10 +494,34 @@ function ProjectCard({ project }: { project: Project }) {
                 onClick={(e) => {
                   e.preventDefault()
                   e.stopPropagation()
-                  window.open(project.github, '_blank', 'noopener,noreferrer')
+                  window.open(project.github!, '_blank', 'noopener,noreferrer')
                 }}
               >
                 GitHub
+              </button>
+            )}
+            {project.githubFrontend && (
+              <button
+                className="border border-white/20 bg-white/15 px-3 py-1.5 text-xs hover:bg-white/20"
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  window.open(project.githubFrontend!, '_blank', 'noopener,noreferrer')
+                }}
+              >
+                GitHub (Frontend)
+              </button>
+            )}
+            {project.githubBackend && (
+              <button
+                className="border border-white/20 bg-white/15 px-3 py-1.5 text-xs hover:bg-white/20"
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  window.open(project.githubBackend!, '_blank', 'noopener,noreferrer')
+                }}
+              >
+                GitHub (Backend)
               </button>
             )}
           </div>
