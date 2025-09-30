@@ -94,44 +94,43 @@ export default function PortfolioClient() {
       githubBackend: 'https://github.com/MartinEnke/orbital-rl',
       preview: '/previews/orbital.png', // place orbital.png in /public
     },
-    // NEW: Orbital RL + Solar System (no live URL, two GitHub buttons, preview image)
+    
     {
-      title: 'Coming ',
+      title: 'Hirethics AI — Fair Scoring & Audit',
       desc:
-        'Soon',
-      tech: [''],
+        'Evidence-bound scoring and bias audit for recruiting: LLM + heuristic fallback, rubric-based scores with quoted spans, blinding & prestige-proxy detection, and an evaluation dashboard (Spearman ρ, Top-K overlap, mean |Δ|). Includes recruiter/ethics/dev viewer modes and exportable audit trail.',
+      tech: ['Python', 'FastAPI', 'Pydantic', 'OpenAI API', 'React', 'Vite', 'TypeScript', 'Tailwind', 'Framer Motion'],
       hosted: 'Local',
       // no href (not deployed)
-      githubFrontend: '',
-      githubBackend: '',
-      preview: '', // place orbital.png in /public
+      github: 'https://github.com/MartinEnke/hirethics_ai',
+      preview: '/previews/hirethics.png', // place hirethics.png in /public/previews
     },
   ]
 
   const blog: BlogEntry[] = [
-    { date: '2025-05-12', title: 'Masterschool — Core Complete', body: 'Wrapped the core curriculum. Built several small apps (auth, REST, CRUD) and sharpened Python + SQL fundamentals.' },
-    { date: '2025-05-19', title: 'GenAI Eng — LLM Theory Deep-Dive', body: 'Covered tokenization, context windows, embeddings, vector search, grounding, and safety. Set up baseline eval notions.' },
-    { date: '2025-05-26', title: 'Prompting & Evals', body: 'Designed prompt patterns for structure/precision. Sketched a light eval harness to sanity-check LLM outputs for schema compliance.' },
-    { date: '2025-06-02', title: 'Kickoff — ZoundZcope AI', body: 'Bootstrapped FastAPI backend and audio pipeline. Planned data model for uploads and per-session analysis.' },
-    { date: '2025-06-09', title: 'Audio Features & UI', body: 'Implemented librosa feature extraction (tempo, spectral stats). Added waveform previews and responsive UI in React.' },
-    { date: '2025-06-16', title: 'Structured AI Critique', body: 'Hooked up OpenAI—structured JSON critique + caching. Added issue tagging and actionable tips format.' },
-    { date: '2025-06-23', title: 'Deployed: The Quiet Almanac', body: 'Made the blog multilingual; added AI moderation, translation, and read-aloud. First successful production deploy.' },
-    { date: '2025-06-30', title: 'Follow-up Chat (ZoundZcope)', body: 'Context-aware follow-ups per upload, token management, and safe truncation logic.' },
-    { date: '2025-07-07', title: 'Multi-Track AI Compare', body: 'Side-by-side AI feedback across versions; session save/restore for producers.' },
-    { date: '2025-07-14', title: 'RAG for Docs & Tutorials', body: 'Chunked docs, built retrieval pipeline, grounded critiques with relevant snippets (less hallucination, more helpfulness).' },
-    { date: '2025-07-21', title: 'Frontend Polish & UX', body: 'Loading states, error boundaries, tighter layout. Reduced time-to-first-insight for users.' },
-    { date: '2025-07-28', title: 'Observability & Prod Hardening', body: 'Better logging, rate limiting, and cold-start tweaks on Render.' },
-    { date: '2025-08-04', title: 'Presentation Prep', body: 'Storyline, demo scripts, README and short screen-captures. Dry-runs with peers.' },
-    { date: '2025-08-11', title: 'ZoundZcope Presentation — ✅', body: 'Presented live; great feedback on A/B compare and RAG usefulness.' },
-    { date: '2025-08-18', title: 'React Sprint — Groovebox', body: 'Built a Web Audio step-sequencer. Mobile-first UI, timing accuracy, and a friendly save flow.' },
-    { date: '2025-08-25', title: 'Groovebox Iteration', body: 'Added swing, metronome, and haptics. Sessions persist in localStorage.' },
-    { date: '2025-09-01', title: 'New Project — AI Promo Agent', body: 'Brief → palette → content pipeline. Prompt composer. Clean PDF export. Solid UX & guardrails (e.g., no emojis in PDFs).' },
-    { date: '2025-09-08', title: 'Polish & Deploy', body: 'Mobile header fixes, disclaimer overlay, favicon, and Vercel deployment.' },
-    { date: '2025-09-15', title: 'Integrated Portfolio', body: 'Added AI Promo Agent to my site with hover previews + a scrollable blog section.' },
-    { date: '2025-09-21', title: 'Orbital RL — Kickoff & Baselines', body: 'Split the project into two repos (orbital-rl / orbital-frontend). Wrote a clean Gymnasium env, random-policy rollout script, and a PPO training/eval path. Generated first JSON rollouts and a tiny Node/Express LLM proxy for explanations. Baseline achieved: Random vs PPO shows early separation.' },
     { date: '2025-09-29', title: 'Orbital RL — Split View, Sparklines, Explain', body: 'Frontend now has A|B split view with a single synced timeline, colored event markers, and sparklines (reward, fuel, radial error, v-tan error). Added “Explain last 10s” summary to the LLM panel, polished UI (scientific cards)' },
+    { date: '2025-09-21', title: 'Orbital RL — Kickoff & Baselines', body: 'Split the project into two repos (orbital-rl / orbital-frontend). Wrote a clean Gymnasium env, random-policy rollout script, and a PPO training/eval path. Generated first JSON rollouts and a tiny Node/Express LLM proxy for explanations. Baseline achieved: Random vs PPO shows early separation.' },
+    { date: '2025-09-15', title: 'Integrated Portfolio', body: 'Added AI Promo Agent to my site with hover previews + a scrollable blog section.' },
+    { date: '2025-09-08', title: 'Polish & Deploy', body: 'Mobile header fixes, disclaimer overlay, favicon, and Vercel deployment.' },
+    { date: '2025-09-01', title: 'New Project — AI Promo Agent', body: 'Brief → palette → content pipeline. Prompt composer. Clean PDF export. Solid UX & guardrails (e.g., no emojis in PDFs).' },
+    { date: '2025-08-25', title: 'Groovebox Iteration', body: 'Added swing, metronome, and haptics. Sessions persist in localStorage.' },
+    { date: '2025-08-18', title: 'React Sprint — Groovebox', body: 'Built a Web Audio step-sequencer. Mobile-first UI, timing accuracy, and a friendly save flow.' },
+    { date: '2025-08-11', title: 'ZoundZcope Presentation — ✅', body: 'Presented live; great feedback on A/B compare and RAG usefulness.' },
+    { date: '2025-08-04', title: 'Presentation Prep', body: 'Storyline, demo scripts, README and short screen-captures. Dry-runs with peers.' },
+    { date: '2025-07-28', title: 'Observability & Prod Hardening', body: 'Better logging, rate limiting, and cold-start tweaks on Render.' },
+    { date: '2025-07-21', title: 'Frontend Polish & UX', body: 'Loading states, error boundaries, tighter layout. Reduced time-to-first-insight for users.' },
+    { date: '2025-07-14', title: 'RAG for Docs & Tutorials', body: 'Chunked docs, built retrieval pipeline, grounded critiques with relevant snippets (less hallucination, more helpfulness).' },
+    { date: '2025-07-07', title: 'Multi-Track AI Compare', body: 'Side-by-side AI feedback across versions; session save/restore for producers.' },
+    { date: '2025-06-30', title: 'Follow-up Chat (ZoundZcope)', body: 'Context-aware follow-ups per upload, token management, and safe truncation logic.' },
+    { date: '2025-06-23', title: 'Deployed: The Quiet Almanac', body: 'Made the blog multilingual; added AI moderation, translation, and read-aloud. First successful production deploy.' },
+    { date: '2025-06-16', title: 'Structured AI Critique', body: 'Hooked up OpenAI—structured JSON critique + caching. Added issue tagging and actionable tips format.' },
+    { date: '2025-06-09', title: 'Audio Features & UI', body: 'Implemented librosa feature extraction (tempo, spectral stats). Added waveform previews and responsive UI in React.' },
+    { date: '2025-06-02', title: 'Kickoff — ZoundZcope AI', body: 'Bootstrapped FastAPI backend and audio pipeline. Planned data model for uploads and per-session analysis.' },
+    { date: '2025-05-26', title: 'Prompting & Evals', body: 'Designed prompt patterns for structure/precision. Sketched a light eval harness to sanity-check LLM outputs for schema compliance.' },
+    { date: '2025-05-19', title: 'GenAI Eng — LLM Theory Deep-Dive', body: 'Covered tokenization, context windows, embeddings, vector search, grounding, and safety. Set up baseline eval notions.' },
+    { date: '2025-05-12', title: 'Masterschool — Core Complete', body: 'Wrapped the core curriculum. Built several small apps (auth, REST, CRUD) and sharpened Python + SQL fundamentals.' },
+];
 
-  ]
 
   const [sending, setSending] = useState<false | 'sending' | 'ok' | 'error'>(false)
   const [errorMsg, setErrorMsg] = useState('')
