@@ -108,8 +108,12 @@ export default function PortfolioClient() {
   ]
 
   const blog: BlogEntry[] = [
-    { date: '2025-09-29', title: 'Orbital RL — Split View, Sparklines, Explain', body: 'Frontend now has A|B split view with a single synced timeline, colored event markers, and sparklines (reward, fuel, radial error, v-tan error). Added “Explain last 10s” summary to the LLM panel, polished UI (scientific cards)' },
-    { date: '2025-09-21', title: 'Orbital RL — Kickoff & Baselines', body: 'Split the project into two repos (orbital-rl / orbital-frontend). Wrote a clean Gymnasium env, random-policy rollout script, and a PPO training/eval path. Generated first JSON rollouts and a tiny Node/Express LLM proxy for explanations. Baseline achieved: Random vs PPO shows early separation.' },
+    { date: '2025-10-12', title: 'Hirethics AI — Fair Scoring & Audit', body: 'Local evidence-bound scoring and bias audit for recruiting: LLM + heuristic fallback, rubric-based scores with quoted spans, blinding & prestige-proxy detection, and an evaluation dashboard (Spearman ρ, Top-K overlap, mean |Δ|). Added recruiter/ethics/dev viewer modes and exportable audit trail.\n\nPython · FastAPI · Pydantic · OpenAI API · React · Tailwind · Framer Motion · GitHub' },
+    { date: '2025-10-05', title: 'Maestro_Lessons — Pattern Grammar', body: 'Refined data schema for phrase patterns and progression trees. Added tempo-linked notation syntax to test how lesson content could adapt dynamically. Feels like composing meets coding — bridging intuition and structure before diving into full CS algorithm drills.' },
+    { date: '2025-10-03', title: 'Maestro_Lessons — Study Notes', body: 'Started notation experiments for musical logic and rhythm training. Built minimal Python tools to map rhythmic ratios and interval structures for lesson scaffolding. Aim: mix ear training with computational reasoning.' },
+    { date: '2025-09-30', title: 'Hirethics AI — Kickoff & Scoring Prototype', body: 'Started local project on fair, explainable candidate evaluation. Built FastAPI + Pydantic backend with rubric templates, anonymized inputs, and first LLM scoring loop. Added fallback heuristics for edge cases and JSON audit exports. Frontend scaffolding in React/Vite with clean viewer modes.\n\nPython · FastAPI · Pydantic · React · Vite · TypeScript · Tailwind' },
+    { date: '2025-09-25', title: 'Orbital RL — Split View, Sparklines, Explain', body: 'Frontend now has A|B split view with a single synced timeline, colored event markers, and sparklines (reward, fuel, radial error, v-tan error). Added “Explain last 10s” summary to the LLM panel, polished UI (scientific cards)' },
+    { date: '2025-09-17', title: 'Orbital RL — Kickoff & Baselines', body: 'Split the project into two repos (orbital-rl / orbital-frontend). Wrote a clean Gymnasium env, random-policy rollout script, and a PPO training/eval path. Generated first JSON rollouts and a tiny Node/Express LLM proxy for explanations. Baseline achieved: Random vs PPO shows early separation.' },
     { date: '2025-09-15', title: 'Integrated Portfolio', body: 'Added AI Promo Agent to my site with hover previews + a scrollable blog section.' },
     { date: '2025-09-08', title: 'Polish & Deploy', body: 'Mobile header fixes, disclaimer overlay, favicon, and Vercel deployment.' },
     { date: '2025-09-01', title: 'New Project — AI Promo Agent', body: 'Brief → palette → content pipeline. Prompt composer. Clean PDF export. Solid UX & guardrails (e.g., no emojis in PDFs).' },
@@ -241,7 +245,7 @@ export default function PortfolioClient() {
                   <div className="text-sm text-slate-200/95">
                     <div className="text-sm text-slate-200/95" />
                     <p>
-                      Python-first backend & GenAI engineer with roots in music. <br />Built three LLM-powered apps
+                      Python-first backend & GenAI engineer with roots in music. <br />Built five LLM-powered apps
                       and a playful React groovebox. Backend-led, frontend-curious.
                     </p>
                     <br />
