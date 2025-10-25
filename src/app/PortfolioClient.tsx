@@ -478,57 +478,58 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
 
         {(project.href || project.github || project.githubFrontend || project.githubBackend) && (
-          <div className="mt-4 flex flex-wrap gap-2">
-            {project.href && (
-              <button
-                className="border border-white/20 bg-white/15 px-3 py-1.5 text-xs hover:bg-white/20"
-                onClick={(e) => {
-                  e.preventDefault()
-                  e.stopPropagation()
-                  window.open(project.href!, '_blank', 'noopener,noreferrer')
-                }}
-              >
-                Live
-              </button>
-            )}
-            {project.github && (
-              <button
-                className="border border-white/20 bg-white/15 px-3 py-1.5 text-xs hover:bg-white/20"
-                onClick={(e) => {
-                  e.preventDefault()
-                  e.stopPropagation()
-                  window.open(project.github!, '_blank', 'noopener,noreferrer')
-                }}
-              >
-                GitHub
-              </button>
-            )}
-            {project.githubFrontend && (
-              <button
-                className="border border-white/20 bg-white/15 px-3 py-1.5 text-xs hover:bg-white/20"
-                onClick={(e) => {
-                  e.preventDefault()
-                  e.stopPropagation()
-                  window.open(project.githubFrontend!, '_blank', 'noopener,noreferrer')
-                }}
-              >
-                GitHub (Frontend)
-              </button>
-            )}
-            {project.githubBackend && (
-              <button
-                className="border border-white/20 bg-white/15 px-3 py-1.5 text-xs hover:bg-white/20"
-                onClick={(e) => {
-                  e.preventDefault()
-                  e.stopPropagation()
-                  window.open(project.githubBackend!, '_blank', 'noopener,noreferrer')
-                }}
-              >
-                GitHub (Backend)
-              </button>
-            )}
-          </div>
-        )}
+  <div className="mt-4 flex flex-wrap gap-2">
+    {project.href && (
+      <button
+        className="border border-white/20 bg-blue-400/15 px-3 py-1.5 text-xs hover:bg-blue-400/25 transition"
+        onClick={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          window.open(project.href!, '_blank', 'noopener,noreferrer')
+        }}
+      >
+        Live
+      </button>
+    )}
+    {project.github && (
+      <button
+        className="border border-white/20 bg-blue-300/15 px-3 py-1.5 text-xs hover:bg-blue-300/25 transition"
+        onClick={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          window.open(project.github!, '_blank', 'noopener,noreferrer')
+        }}
+      >
+        GitHub
+      </button>
+    )}
+    {project.githubFrontend && (
+      <button
+        className="border border-white/20 bg-blue-300/15 px-3 py-1.5 text-xs hover:bg-blue-300/25 transition"
+        onClick={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          window.open(project.githubFrontend!, '_blank', 'noopener,noreferrer')
+        }}
+      >
+        GitHub (Frontend)
+      </button>
+    )}
+    {project.githubBackend && (
+      <button
+        className="border border-white/20 bg-blue-300/15 px-3 py-1.5 text-xs hover:bg-blue-300/25 transition"
+        onClick={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          window.open(project.githubBackend!, '_blank', 'noopener,noreferrer')
+        }}
+      >
+        GitHub (Backend)
+      </button>
+    )}
+  </div>
+)}
+
       </div>
     </div>
   )
