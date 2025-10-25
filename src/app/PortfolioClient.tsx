@@ -54,6 +54,15 @@ export default function PortfolioClient() {
       preview: '/previews/zoundzcope.jpg',
     },
     {
+      title: 'Hirethics AI — Fair Scoring & Audit',
+      desc:
+        'Transparent, evidence-bound candidate scoring with built-in bias auditing: LLM scoring with heuristic fallback, rubric-based metrics with quoted spans, blinding & prestige-proxy detection, plus an evaluation dashboard (Spearman ρ, Top-K overlap, mean |Δ|). Features recruiter, ethics, and dev viewer modes and an exportable audit trail for accountability.',
+      tech: ['Python', 'FastAPI', 'Pydantic', 'OpenAI API', 'React', 'Vite', 'TypeScript', 'Tailwind', 'Framer Motion'],
+      hosted: 'Local',
+      github: 'https://github.com/MartinEnke/hirethics_ai',
+      preview: '/previews/hirethics.png',
+    },
+    {
       title: 'AI Music Promo Agent',
       desc:
         'Shape a creative direction, generate platform-aware content, get image prompts for cover artworks, and export a tidy PDF — in minutes.',
@@ -95,16 +104,7 @@ export default function PortfolioClient() {
       preview: '/previews/orbital.png', // place orbital.png in /public
     },
     
-    {
-      title: 'Hirethics AI — Fair Scoring & Audit',
-      desc:
-        'Evidence-bound scoring and bias audit for recruiting: LLM + heuristic fallback, rubric-based scores with quoted spans, blinding & prestige-proxy detection, and an evaluation dashboard (Spearman ρ, Top-K overlap, mean |Δ|). Includes recruiter/ethics/dev viewer modes and exportable audit trail.',
-      tech: ['Python', 'FastAPI', 'Pydantic', 'OpenAI API', 'React', 'Vite', 'TypeScript', 'Tailwind', 'Framer Motion'],
-      hosted: 'Local',
-      // no href (not deployed)
-      github: 'https://github.com/MartinEnke/hirethics_ai',
-      preview: '/previews/hirethics.png', // place hirethics.png in /public/previews
-    },
+    
   ]
 
   const blog: BlogEntry[] = [
