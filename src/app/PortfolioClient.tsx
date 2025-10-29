@@ -108,6 +108,22 @@ export default function PortfolioClient() {
   ]
 
   const blog: BlogEntry[] = [
+    { 
+      date: '2025-10-29', 
+      title: 'Masterschool — Final Exam Prep', 
+      body: 'Preparing for the final Masterschool exam in Backend & GenAI Engineering. Feels like the culmination of months of growth and countless small breakthroughs.' 
+  },
+    { 
+      date: '2025-10-28', 
+      title: 'Hirethics AI — CV Scoring, Bias Checks & PDF Parsing', 
+      body: 'Expanded CV-PDF ingestion and structure-aware parsing. Bias-neutral scoring, introduced ethics transparency dashboard.'
+  },
+  { 
+      date: '2025-10-23', 
+      title: 'AI Show & Tell — Berlin Community Launch', 
+      body: 'The very first Global AI Community’s “AI Show & Tell” in Berlin was a blast! Real demos, deep talks, and great people at an amazing location on Kurfürstendamm.\n\nSpeakers included:\n\n• Aaron Koivunen — Model Context Protocol: How MCP Turns Conversation into Action\n• Henk Boelman — From Zero to PizzaBot: Building AI Agents with Azure AI Foundry\n• Anke Borchers 安可博彻斯 — Minds and Machines: Adaptive AI Systems in High-Stakes Scenarios\n• Patrick Tobler — Sokosumi: Europe’s Decentralized AI Agent Marketplace\n• Zaid Zaim {MVP} & Michael Hunger — Plug-and-Play AI Memory with Neo4j Knowledge Graphs & AI Agents\n• Dr. Nicolai Bohn & Arkadiusz Kwasigroch — Designing a Flexible Evaluation Backend for LLM Applications\n• Marc Plogas, Christian Glessner {MVP}, Adriana Carmona Beltran, Nora Al-Kassab & Selim Nowicki — AI Agents: Navigating Innovation & Compliance\n\nInspiring energy — Berlin’s AI ecosystem feels alive and collaborative.'
+  },
+  
     { date: '2025-10-12', title: 'Hirethics AI — Fair Scoring & Audit', body: 'Local evidence-bound scoring and bias audit for recruiting: LLM + heuristic fallback, rubric-based scores with quoted spans, blinding & prestige-proxy detection, and an evaluation dashboard (Spearman ρ, Top-K overlap, mean |Δ|). Added recruiter/ethics/dev viewer modes and exportable audit trail.\n\nPython · FastAPI · Pydantic · OpenAI API · React · Tailwind · Framer Motion · GitHub' },
     { date: '2025-10-05', title: 'Maestro_Lessons — Pattern Grammar', body: 'Refined data schema for phrase patterns and progression trees. Added tempo-linked notation syntax to test how lesson content could adapt dynamically. Feels like composing meets coding — bridging intuition and structure before diving into full CS algorithm drills.' },
     { date: '2025-10-03', title: 'Maestro_Lessons — Study Notes', body: 'Started notation experiments for musical logic and rhythm training. Built minimal Python tools to map rhythmic ratios and interval structures for lesson scaffolding. Aim: mix ear training with computational reasoning.' },
@@ -512,7 +528,7 @@ function ProjectCard({ project }: { project: Project }) {
           window.open(project.githubFrontend!, '_blank', 'noopener,noreferrer')
         }}
       >
-        GitHub (Frontend)
+        GitHub (FE)
       </button>
     )}
     {project.githubBackend && (
@@ -524,7 +540,7 @@ function ProjectCard({ project }: { project: Project }) {
           window.open(project.githubBackend!, '_blank', 'noopener,noreferrer')
         }}
       >
-        GitHub (Backend)
+        GitHub (BE)
       </button>
     )}
   </div>
