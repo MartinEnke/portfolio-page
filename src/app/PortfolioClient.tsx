@@ -54,15 +54,6 @@ export default function PortfolioClient() {
       preview: '/previews/zoundzcope.jpg',
     },
     {
-      title: 'Hirethics AI — Fair Scoring & Audit',
-      desc:
-        'Transparent, evidence-bound candidate scoring with built-in bias auditing: LLM scoring with heuristic fallback, rubric-based metrics with quoted spans, blinding & prestige-proxy detection, plus an evaluation dashboard (Spearman ρ, Top-K overlap, mean |Δ|). Features recruiter, ethics, and dev viewer modes and an exportable audit trail for accountability.',
-      tech: ['Python', 'FastAPI', 'Pydantic', 'OpenAI API', 'React', 'Vite', 'TypeScript', 'Tailwind', 'Framer Motion'],
-      hosted: 'Local',
-      github: 'https://github.com/MartinEnke/hirethics_ai',
-      preview: '/previews/hirethics.png',
-    },
-    {
       title: 'AI Music Promo Agent',
       desc:
         'Shape a creative direction, generate platform-aware content, get image prompts for cover artworks, and export a tidy PDF — in minutes.',
@@ -72,6 +63,16 @@ export default function PortfolioClient() {
       github: 'https://github.com/MartinEnke/creative-promo-agent',
       preview: '/previews/promo_agent.jpg',
     },
+    {
+      title: 'Hirethics AI — Fair Scoring & Audit',
+      desc:
+        'Transparent, evidence-bound candidate scoring with built-in bias auditing: LLM scoring with heuristic fallback, rubric-based metrics with quoted spans, blinding & prestige-proxy detection, plus an evaluation dashboard (Spearman ρ, Top-K overlap, mean |Δ|). Features recruiter, ethics, and dev viewer modes and an exportable audit trail for accountability.',
+      tech: ['Python', 'FastAPI', 'Pydantic', 'OpenAI API', 'React', 'Vite', 'TypeScript', 'Tailwind', 'Framer Motion'],
+      hosted: 'Local',
+      github: 'https://github.com/MartinEnke/hirethics_ai',
+      preview: '/previews/hirethics.png',
+    },
+   
     {
       title: 'Groovebox',
       desc: 'Mobile-first drum loop sequencer — tap, record, tune, sidechain, swing, fx, compression, and save sessions.',
@@ -108,6 +109,26 @@ export default function PortfolioClient() {
   ]
 
   const blog: BlogEntry[] = [
+    { 
+      date: '2025-11-21',
+      title: 'Webeet — Internship Prep',
+      body: 'Preparing for my internship at Webeet starting December 1st. Getting familiar with their tools, reviewing code standards, and setting up a small practice environment to hit the ground running.'
+    },
+    { 
+      date: '2025-11-15',
+      title: 'Career Prep Path — Masterschool',
+      body: 'Started the Masterschool career preparation track: refining projects, polishing documentation, upgrading my portfolio, and preparing for the next step. Very motivating phase.'
+    },
+    { 
+      date: '2025-11-08',
+      title: 'MCP & BMAD — Concept Deep Dive',
+      body: 'Explored the Model Context Protocol (MCP) and Berkeley Modular Autonomous Design (BMAD). Both offer fascinating perspectives on orchestration, tool-use, and agentic workflows. Lots of ideas brewing.'
+    },
+    { 
+      date: '2025-11-02',
+      title: 'Masterschool — Final Exam Results',
+      body: 'Finished the final Backend & GenAI Engineering exam with 96.7%. Feeling proud of the journey and grateful for the progress over the past year.'
+    },
     { 
       date: '2025-10-29', 
       title: 'Masterschool — Final Exam Prep', 
@@ -233,16 +254,16 @@ export default function PortfolioClient() {
                       </span>
                       <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-200 to-cyan-200
                                      text-2xl sm:text-3xl md:text-5xl leading-[1.25] pb-[3px]">
-                        Full-stack & GenAI Engineer
+                        Full-stack & AI Engineer
                       </span>
                     </h1>
 
                     <p className="mt-3 text-sm sm:text-base text-slate-200">
-                      Python · FastAPI/Flask · SQL/PostgreSQL · LLMs (RAG) · React · TypeScript
-                    </p>
-                    <p className="mt-3 text-sm sm:text-base text-slate-200/95">
-                      I design clean, scalable APIs and integrate LLM features into real products.
-                    </p>
+  TypeScript · React/Next.js · Python · FastAPI/Flask · SQL/PostgreSQL · LLMs (RAG)
+</p>
+<p className="mt-3 text-sm sm:text-base text-slate-200/95">
+  I build clean, scalable APIs and full-stack applications, integrating LLM features where they add real value.
+</p>
                     <br />
                   </div>
 
@@ -261,13 +282,13 @@ export default function PortfolioClient() {
                   <div className="text-sm text-slate-200/95">
                     <div className="text-sm text-slate-200/95" />
                     <p>
-                      Python-first backend & GenAI engineer with roots in music. <br />Built five LLM-powered apps
-                      and a playful React groovebox. Backend-led, frontend-curious.
-                    </p>
-                    <br />
-                    <p className="mt-3 text-s s:text-base text-slate-200/95">
-                      Open to <b>junior/entry-level</b> roles — onsite, hybrid, or remote.
-                    </p>
+  Full-stack & AI engineer with roots in music. <br />
+  Comfortable across TypeScript/React frontends and Python/FastAPI backends.
+</p>
+
+<p className="mt-3 text-s s:text-base text-slate-200/95">
+  Open to roles in <b>backend, full-stack, and AI integration</b> — onsite, hybrid, or remote.
+</p>
                   </div>
                 </div>
               </div>
