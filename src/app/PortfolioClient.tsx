@@ -259,7 +259,7 @@ export default function PortfolioClient() {
                     </h1>
 
                     <p className="mt-3 text-sm sm:text-base text-slate-200">
-  Python · FastAPI/Flask · LLMs (RAG) · Prompt Engineering · TypeScript · React/Next.js
+  Python · FastAPI/Flask · LLMs (RAG) · Prompt Engineering · TypeScript
 </p>
 <p className="mt-3 text-sm sm:text-base text-slate-200/95">
   I build clean, scalable APIs and full-stack applications, integrating LLM features where they add real value.
