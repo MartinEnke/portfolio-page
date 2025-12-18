@@ -633,7 +633,7 @@ function ProjectCard({ project }: { project: Project }) {
   }, [])
 
   const PREVIEW_BASE = 260
-  const SCALE = 1.8
+  const SCALE = 2.05
   const PREVIEW_WIDTH = Math.round(PREVIEW_BASE * SCALE)
   const GAP = 16
   const PAD = 12
