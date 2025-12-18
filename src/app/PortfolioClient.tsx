@@ -42,7 +42,6 @@ export default function PortfolioClient() {
   const isWip = process.env.NEXT_PUBLIC_WIP === 'true'
 
   const projects: Project[] = [
-    // Existing projects
     {
       title: 'ZoundZcope AI',
       desc:
@@ -63,16 +62,38 @@ export default function PortfolioClient() {
       github: 'https://github.com/MartinEnke/creative-promo-agent',
       preview: '/previews/promo_agent.jpg',
     },
+
+    // NEW: Console (local) — keep description + tech compact so the card stays small
+    {
+  title: 'Agentic AI Operations Console',
+  desc:
+    'High-stakes operations console blueprint for supervising agentic AI workflows in support, compliance, trust & safety, and internal operations. Enables human-in-the-loop review of agent handoffs and AI artifacts.'
+,
+  tech: [
+    'Next.js',
+    'TypeScript',
+    'Tailwind CSS',
+    'OpenAI API',
+    'REST APIs',
+    'Async Event Queues',
+    'Human-in-the-Loop AI',
+    'Agent Orchestration',
+    'Audit Logging'
+  ],
+  hosted: 'Local',
+  github: 'https://github.com/MartinEnke/FlowOps-AI',
+  preview: '/previews/Console.jpg',
+},
+
     {
       title: 'Hirethics AI — Fair Scoring & Audit',
       desc:
-        'Transparent, evidence-bound candidate scoring with built-in bias auditing: LLM scoring with heuristic fallback, rubric-based metrics with quoted spans, blinding & prestige-proxy detection, plus an evaluation dashboard (Spearman ρ, Top-K overlap, mean |Δ|). Features recruiter, ethics, and dev viewer modes and an exportable audit trail for accountability.',
+        'Transparent, evidence-bound candidate scoring with built-in bias auditing: LLM scoring with heuristic fallback, rubric-based metrics plus an evaluation dashboard.',
       tech: ['Python', 'FastAPI', 'Pydantic', 'OpenAI API', 'React', 'Vite', 'TypeScript', 'Tailwind', 'Framer Motion'],
       hosted: 'Local',
       github: 'https://github.com/MartinEnke/hirethics_ai',
       preview: '/previews/hirethics.png',
     },
-   
     {
       title: 'Groovebox',
       desc: 'Mobile-first drum loop sequencer — tap, record, tune, sidechain, swing, fx, compression, and save sessions.',
@@ -92,85 +113,233 @@ export default function PortfolioClient() {
       github: 'https://github.com/MartinEnke/Masterblog_API',
       preview: '/previews/almanac.jpg',
     },
-    // NEW: Orbital RL + Solar System (no live URL, two GitHub buttons, preview image)
-    {
-      title: 'Orbital - Reinforcement Learning',
-      desc:
-        'Interactive 3D viz of an RL spacecraft flying in a Sun-centered field with Keplerian planets. A/B compare Random vs PPO, split view, analytics, and GPT explanations.',
-      tech: ['Python', 'Gymnasium', 'Stable-Baselines3', 'React', 'Three.js', '@react-three/fiber', 'Tailwind', 'Node/Express', 'OpenAI API'],
-      hosted: 'Local',
-      // no href (not deployed)
-      githubFrontend: 'https://github.com/MartinEnke/orbital-frontend',
-      githubBackend: 'https://github.com/MartinEnke/orbital-rl',
-      preview: '/previews/orbital.png', // place orbital.png in /public
-    },
-    
-    
+    //{
+    //  title: 'Orbital - Reinforcement Learning',
+    //  desc:
+    //    'Interactive 3D viz of an RL spacecraft flying in a Sun-centered field with Keplerian planets. A/B compare Random vs PPO, split view, analytics, and GPT explanations.',
+    //  tech: ['Python', 'Gymnasium', 'Stable-Baselines3', 'React', 'Three.js', '@react-three/fiber', 'Tailwind', 'Node/Express', 'OpenAI API'],
+    //  hosted: 'Local',
+    //  githubFrontend: 'https://github.com/MartinEnke/orbital-frontend',
+    //  githubBackend: 'https://github.com/MartinEnke/orbital-rl',
+    //  preview: '/previews/orbital.png',
+   // },
   ]
 
+
+
   const blog: BlogEntry[] = [
-    { 
-      date: '2025-11-21',
-      title: 'Webeet — Internship Prep',
-      body: 'Preparing for my internship at Webeet starting December 1st. Getting familiar with their tools, reviewing code standards, and setting up a small practice environment to hit the ground running.'
-    },
-    { 
-      date: '2025-11-15',
-      title: 'Career Prep Path — Masterschool',
-      body: 'Started the Masterschool career preparation track: refining projects, polishing documentation, upgrading my portfolio, and preparing for the next step. Very motivating phase.'
-    },
-    { 
-      date: '2025-11-08',
-      title: 'MCP & BMAD — Concept Deep Dive',
-      body: 'Explored the Model Context Protocol (MCP) and Berkeley Modular Autonomous Design (BMAD). Both offer fascinating perspectives on orchestration, tool-use, and agentic workflows. Lots of ideas brewing.'
-    },
-    { 
-      date: '2025-11-02',
-      title: 'Masterschool — Final Exam Results',
-      body: 'Finished the final Backend & GenAI Engineering exam with 96.7%. Feeling proud of the journey and grateful for the progress over the past year.'
-    },
-    { 
-      date: '2025-10-29', 
-      title: 'Masterschool — Final Exam Prep', 
-      body: 'Preparing for the final Masterschool exam in Backend & GenAI Engineering. Feels like the culmination of months of growth and countless small breakthroughs.' 
+  {
+    date: '2025-12-16',
+    title: 'Agentic AI Operations Console',
+    body:
+      'Started building an Agentic AI Operations Console as a high-stakes operations blueprint for supervising agentic AI workflows in support, compliance, trust & safety, and internal operations.\n\nCore design principles:\n• Human-in-the-loop by default — AI assists, humans decide\n• Explicit agent handoffs with full visibility into status, priority, and escalation context\n• AI-generated artifacts (summaries, risk signals, reply drafts) are read-only, versioned, and auditable\n• Failure-safe design: AI errors never block core operational workflows\n\nThe console is intentionally not a chatbot frontend, but a decision-support system focused on transparency, control, and accountability.'
   },
-    { 
-      date: '2025-10-28', 
-      title: 'Hirethics AI — CV Scoring, Bias Checks & PDF Parsing', 
-      body: 'Expanded CV-PDF ingestion and structure-aware parsing. Bias-neutral scoring, introduced ethics transparency dashboard.'
+  {
+    date: '2025-12-10',
+    title: 'PyData Berlin — Applied AI & Data Systems',
+    body:
+      'Visited the PyData Berlin event, which brought together practitioners and researchers across data engineering, machine learning, and applied AI. The talks and discussions reinforced how Python remains a central ecosystem for building, evaluating, and operating production-grade AI systems.'
   },
-  { 
-      date: '2025-10-23', 
-      title: 'AI Show & Tell — Berlin Community Launch', 
-      body: 'The very first Global AI Community’s “AI Show & Tell” in Berlin was a blast! Real demos, deep talks, and great people at an amazing location on Kurfürstendamm.\n\nSpeakers included:\n\n• Aaron Koivunen — Model Context Protocol: How MCP Turns Conversation into Action\n• Henk Boelman — From Zero to PizzaBot: Building AI Agents with Azure AI Foundry\n• Anke Borchers 安可博彻斯 — Minds and Machines: Adaptive AI Systems in High-Stakes Scenarios\n• Patrick Tobler — Sokosumi: Europe’s Decentralized AI Agent Marketplace\n• Zaid Zaim {MVP} & Michael Hunger — Plug-and-Play AI Memory with Neo4j Knowledge Graphs & AI Agents\n• Dr. Nicolai Bohn & Arkadiusz Kwasigroch — Designing a Flexible Evaluation Backend for LLM Applications\n• Marc Plogas, Christian Glessner {MVP}, Adriana Carmona Beltran, Nora Al-Kassab & Selim Nowicki — AI Agents: Navigating Innovation & Compliance\n\nInspiring energy — Berlin’s AI ecosystem feels alive and collaborative.'
+  {
+    date: '2025-12-02',
+    title: 'Webeet — Internship Started',
+    body:
+      'Started my internship at Webeat. Early focus areas include Hexagonal Architecture, TypeScript-based internal tooling, and collaborative team workflows. Emphasis is placed on clean system boundaries, maintainability, and learning how architectural decisions play out in real production environments.'
   },
-  
-    { date: '2025-10-12', title: 'Hirethics AI — Fair Scoring & Audit', body: 'Local evidence-bound scoring and bias audit for recruiting: LLM + heuristic fallback, rubric-based scores with quoted spans, blinding & prestige-proxy detection, and an evaluation dashboard (Spearman ρ, Top-K overlap, mean |Δ|). Added recruiter/ethics/dev viewer modes and exportable audit trail.\n\nPython · FastAPI · Pydantic · OpenAI API · React · Tailwind · Framer Motion · GitHub' },
-    { date: '2025-10-05', title: 'Maestro_Lessons — Pattern Grammar', body: 'Refined data schema for phrase patterns and progression trees. Added tempo-linked notation syntax to test how lesson content could adapt dynamically. Feels like composing meets coding — bridging intuition and structure before diving into full CS algorithm drills.' },
-    { date: '2025-10-03', title: 'Maestro_Lessons — Study Notes', body: 'Started notation experiments for musical logic and rhythm training. Built minimal Python tools to map rhythmic ratios and interval structures for lesson scaffolding. Aim: mix ear training with computational reasoning.' },
-    { date: '2025-09-30', title: 'Hirethics AI — Kickoff & Scoring Prototype', body: 'Started local project on fair, explainable candidate evaluation. Built FastAPI + Pydantic backend with rubric templates, anonymized inputs, and first LLM scoring loop. Added fallback heuristics for edge cases and JSON audit exports. Frontend scaffolding in React/Vite with clean viewer modes.\n\nPython · FastAPI · Pydantic · React · Vite · TypeScript · Tailwind' },
-    { date: '2025-09-25', title: 'Orbital RL — Split View, Sparklines, Explain', body: 'Frontend now has A|B split view with a single synced timeline, colored event markers, and sparklines (reward, fuel, radial error, v-tan error). Added “Explain last 10s” summary to the LLM panel, polished UI (scientific cards)' },
-    { date: '2025-09-17', title: 'Orbital RL — Kickoff & Baselines', body: 'Split the project into two repos (orbital-rl / orbital-frontend). Wrote a clean Gymnasium env, random-policy rollout script, and a PPO training/eval path. Generated first JSON rollouts and a tiny Node/Express LLM proxy for explanations. Baseline achieved: Random vs PPO shows early separation.' },
-    { date: '2025-09-15', title: 'Integrated Portfolio', body: 'Added AI Promo Agent to my site with hover previews + a scrollable blog section.' },
-    { date: '2025-09-08', title: 'Polish & Deploy', body: 'Mobile header fixes, disclaimer overlay, favicon, and Vercel deployment.' },
-    { date: '2025-09-01', title: 'New Project — AI Promo Agent', body: 'Brief → palette → content pipeline. Prompt composer. Clean PDF export. Solid UX & guardrails (e.g., no emojis in PDFs).' },
-    { date: '2025-08-25', title: 'Groovebox Iteration', body: 'Added swing, metronome, and haptics. Sessions persist in localStorage.' },
-    { date: '2025-08-18', title: 'React Sprint — Groovebox', body: 'Built a Web Audio step-sequencer. Mobile-first UI, timing accuracy, and a friendly save flow.' },
-    { date: '2025-08-11', title: 'ZoundZcope Presentation — ✅', body: 'Presented live; great feedback on A/B compare and RAG usefulness.' },
-    { date: '2025-08-04', title: 'Presentation Prep', body: 'Storyline, demo scripts, README and short screen-captures. Dry-runs with peers.' },
-    { date: '2025-07-28', title: 'Observability & Prod Hardening', body: 'Better logging, rate limiting, and cold-start tweaks on Render.' },
-    { date: '2025-07-21', title: 'Frontend Polish & UX', body: 'Loading states, error boundaries, tighter layout. Reduced time-to-first-insight for users.' },
-    { date: '2025-07-14', title: 'RAG for Docs & Tutorials', body: 'Chunked docs, built retrieval pipeline, grounded critiques with relevant snippets (less hallucination, more helpfulness).' },
-    { date: '2025-07-07', title: 'Multi-Track AI Compare', body: 'Side-by-side AI feedback across versions; session save/restore for producers.' },
-    { date: '2025-06-30', title: 'Follow-up Chat (ZoundZcope)', body: 'Context-aware follow-ups per upload, token management, and safe truncation logic.' },
-    { date: '2025-06-23', title: 'Deployed: The Quiet Almanac', body: 'Made the blog multilingual; added AI moderation, translation, and read-aloud. First successful production deploy.' },
-    { date: '2025-06-16', title: 'Structured AI Critique', body: 'Hooked up OpenAI—structured JSON critique + caching. Added issue tagging and actionable tips format.' },
-    { date: '2025-06-09', title: 'Audio Features & UI', body: 'Implemented librosa feature extraction (tempo, spectral stats). Added waveform previews and responsive UI in React.' },
-    { date: '2025-06-02', title: 'Kickoff — ZoundZcope AI', body: 'Bootstrapped FastAPI backend and audio pipeline. Planned data model for uploads and per-session analysis.' },
-    { date: '2025-05-26', title: 'Prompting & Evals', body: 'Designed prompt patterns for structure/precision. Sketched a light eval harness to sanity-check LLM outputs for schema compliance.' },
-    { date: '2025-05-19', title: 'GenAI Eng — LLM Theory Deep-Dive', body: 'Covered tokenization, context windows, embeddings, vector search, grounding, and safety. Set up baseline eval notions.' },
-    { date: '2025-05-12', title: 'Masterschool — Core Complete', body: 'Wrapped the core curriculum. Built several small apps (auth, REST, CRUD) and sharpened Python + SQL fundamentals.' },
-];
+  {
+    date: '2025-11-21',
+    title: 'Webeet — Internship Preparation',
+    body:
+      'Prepared for my internship at Webeat by getting familiar with tooling, reviewing code standards, and setting up a small local practice environment to hit the ground running.'
+  },
+  {
+    date: '2025-11-15',
+    title: 'Career Preparation — Masterschool',
+    body:
+      'Started the Masterschool career preparation track: refining projects, polishing documentation, upgrading my portfolio, and preparing for the next step. A very motivating phase.'
+  },
+  {
+    date: '2025-11-08',
+    title: 'MCP & BMAD — Concept Deep Dive',
+    body:
+      'Explored the Model Context Protocol (MCP) and Berkeley Modular Autonomous Design (BMAD). Both offer compelling perspectives on agent orchestration, tool use, and structured agentic workflows. Lots of ideas brewing.'
+  },
+  {
+    date: '2025-11-02',
+    title: 'Masterschool — Final Exam Results',
+    body:
+      'Finished the final Backend & GenAI Engineering exam with a score of 96.7%. Feeling proud of the journey and grateful for the progress over the past year.'
+  },
+  {
+    date: '2025-10-29',
+    title: 'Masterschool — Final Exam Preparation',
+    body:
+      'Preparing for the final Masterschool exam in Backend & GenAI Engineering. Feels like the culmination of months of growth and countless small breakthroughs.'
+  },
+  {
+    date: '2025-10-28',
+    title: 'Hirethics AI — CV Scoring, Bias Checks & PDF Parsing',
+    body:
+      'Expanded CV PDF ingestion with structure-aware parsing. Added bias-neutral scoring and introduced an ethics transparency dashboard to surface scoring logic and audit signals.'
+  },
+  {
+    date: '2025-10-23',
+    title: 'AI Show & Tell — Berlin Community Launch',
+    body:
+      'Attended the first Global AI Community “AI Show & Tell” in Berlin. Real demos, deep technical talks, and strong discussions around agent systems, evaluation, compliance, and AI memory. Inspiring energy — Berlin’s AI ecosystem feels alive and collaborative.'
+  },
+  {
+    date: '2025-10-12',
+    title: 'Hirethics AI — Fair Scoring & Audit',
+    body:
+      'Built local, evidence-bound candidate scoring with bias auditing: LLM scoring with heuristic fallback, rubric-based metrics with quoted spans, blinding and prestige-proxy detection, and an evaluation dashboard (Spearman ρ, Top-K overlap, mean |Δ|). Added recruiter, ethics, and developer viewer modes with exportable audit trails.'
+  },
+  {
+    date: '2025-10-05',
+    title: 'Maestro_Lessons — Pattern Grammar',
+    body:
+      'Refined data schemas for phrase patterns and progression trees. Added tempo-linked notation syntax to explore how lesson content could adapt dynamically. A space where composing meets coding.'
+  },
+  {
+    date: '2025-10-03',
+    title: 'Maestro_Lessons — Study Notes',
+    body:
+      'Started notation experiments for musical logic and rhythm training. Built minimal Python tools to map rhythmic ratios and interval structures as lesson scaffolding.'
+  },
+  {
+    date: '2025-09-30',
+    title: 'Hirethics AI — Kickoff & Scoring Prototype',
+    body:
+      'Kicked off Hirethics AI: FastAPI + Pydantic backend with rubric templates, anonymized inputs, initial LLM scoring loop, and heuristic fallbacks. Frontend scaffolding in React/Vite with clean viewer modes.'
+  },
+  {
+    date: '2025-09-25',
+    title: 'Orbital RL — Split View, Sparklines & Explain',
+    body:
+      'Implemented A/B split view with a synced timeline, sparklines for reward and error metrics, and an “Explain last 10s” LLM summary panel. Polished UI with scientific-style cards.'
+  },
+  {
+    date: '2025-09-17',
+    title: 'Orbital RL — Kickoff & Baselines',
+    body:
+      'Split the project into orbital-rl and orbital-frontend. Built a clean Gymnasium environment, random-policy baseline, PPO training path, and first rollout analytics. Early separation between Random and PPO achieved.'
+  },
+  {
+    date: '2025-09-15',
+    title: 'Integrated Portfolio',
+    body:
+      'Integrated the AI Promo Agent into my portfolio with hover previews and a scrollable blog section.'
+  },
+  {
+    date: '2025-09-08',
+    title: 'Polish & Deploy',
+    body:
+      'Final mobile header fixes, disclaimer overlay, favicon, and deployment on Vercel.'
+  },
+  {
+    date: '2025-09-01',
+    title: 'New Project — AI Promo Agent',
+    body:
+      'Built a creative pipeline from brief to palette to content. Implemented prompt composition, clean PDF export, and UX guardrails.'
+  },
+  {
+    date: '2025-08-25',
+    title: 'Groovebox — Iteration',
+    body:
+      'Added swing, metronome, and haptics. Sessions now persist via localStorage.'
+  },
+  {
+    date: '2025-08-18',
+    title: 'React Sprint — Groovebox',
+    body:
+      'Built a mobile-first Web Audio step sequencer with a focus on timing accuracy and a friendly save flow.'
+  },
+  {
+    date: '2025-08-11',
+    title: 'ZoundZcope Presentation — Complete',
+    body:
+      'Presented ZoundZcope live and received great feedback on the A/B compare workflow and RAG usefulness.'
+  },
+  {
+    date: '2025-08-04',
+    title: 'Presentation Preparation',
+    body:
+      'Prepared storyline, demo scripts, README updates, and short screen captures. Dry-runs with peers.'
+  },
+  {
+    date: '2025-07-28',
+    title: 'Observability & Production Hardening',
+    body:
+      'Improved logging, added rate limiting, and tuned cold-start behavior on Render.'
+  },
+  {
+    date: '2025-07-21',
+    title: 'Frontend Polish & UX',
+    body:
+      'Added loading states, error boundaries, and tightened layout to reduce time-to-first-insight.'
+  },
+  {
+    date: '2025-07-14',
+    title: 'RAG for Docs & Tutorials',
+    body:
+      'Chunked documentation, built a retrieval pipeline, and grounded AI critiques with relevant snippets to reduce hallucinations.'
+  },
+  {
+    date: '2025-07-07',
+    title: 'Multi-Track AI Compare',
+    body:
+      'Implemented side-by-side AI feedback across multiple versions with session save and restore.'
+  },
+  {
+    date: '2025-06-30',
+    title: 'Follow-up Chat — ZoundZcope',
+    body:
+      'Built context-aware follow-ups per upload with token management and safe truncation logic.'
+  },
+  {
+    date: '2025-06-23',
+    title: 'Deployed: The Quiet Almanac',
+    body:
+      'Launched the blog with multilingual support, AI moderation, translation, and read-aloud. First successful production deployment.'
+  },
+  {
+    date: '2025-06-16',
+    title: 'Structured AI Critique',
+    body:
+      'Integrated structured JSON critiques via OpenAI with caching, issue tagging, and actionable feedback formatting.'
+  },
+  {
+    date: '2025-06-09',
+    title: 'Audio Features & UI',
+    body:
+      'Implemented audio feature extraction with librosa and added waveform previews with a responsive UI.'
+  },
+  {
+    date: '2025-06-02',
+    title: 'Kickoff — ZoundZcope AI',
+    body:
+      'Bootstrapped the FastAPI backend and audio pipeline. Planned the data model for uploads and per-session analysis.'
+  },
+  {
+    date: '2025-05-26',
+    title: 'Prompting & Evaluations',
+    body:
+      'Designed prompt patterns for structure and precision. Sketched a lightweight evaluation harness for schema compliance.'
+  },
+  {
+    date: '2025-05-19',
+    title: 'GenAI Engineering — LLM Theory Deep Dive',
+    body:
+      'Covered tokenization, context windows, embeddings, vector search, grounding, and safety. Established baseline evaluation concepts.'
+  },
+  {
+    date: '2025-05-12',
+    title: 'Masterschool — Core Complete',
+    body:
+      'Completed the core curriculum. Built multiple small apps (auth, REST, CRUD) and strengthened Python and SQL fundamentals.'
+  },
+]
+
 
 
   const [sending, setSending] = useState<false | 'sending' | 'ok' | 'error'>(false)
