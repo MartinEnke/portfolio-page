@@ -141,7 +141,7 @@ export default function PortfolioClient() {
       'Visited the PyData Berlin event, which brought together practitioners and researchers across data engineering, machine learning, and applied AI. The talks and discussions reinforced how Python remains a central ecosystem for building, evaluating, and operating production-grade AI systems.'
   },
   {
-    date: '2025-12-02',
+    date: '2025-12-01',
     title: 'Webeet — Internship Started',
     body:
       'Started my internship at Webeat. Early focus areas include Hexagonal Architecture, TypeScript-based internal tooling, and collaborative team workflows. Emphasis is placed on clean system boundaries, maintainability, and learning how architectural decisions play out in real production environments.'
