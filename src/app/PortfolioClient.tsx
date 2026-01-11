@@ -56,7 +56,7 @@ export default function PortfolioClient() {
       title: 'AI Music Promo Agent',
       desc:
         'Shape a creative direction, generate platform-aware content, get image prompts for cover artworks, and export a tidy PDF — in minutes.',
-      tech: ['Next.js', 'TypeScript', 'OpenAI API', 'Tailwind', 'jsPDF'],
+      tech: ['Next.js', 'TypeScript', 'Serverless Functions', 'OpenAI API', 'Tailwind', 'jsPDF'],
       hosted: 'Vercel',
       href: 'https://ai-promo-agent.vercel.app/',
       github: 'https://github.com/MartinEnke/creative-promo-agent',
