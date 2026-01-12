@@ -128,6 +128,12 @@ export default function PortfolioClient() {
 
 
   const blog: BlogEntry[] = [
+    {
+  date: '2026-01-10',
+  title: 'Webeet — Working Within a Layered System',
+  body:
+    'As the internship progressed, my focus shifted from onboarding into contributing across different parts of the system.\n\nDaily standups and ongoing collaboration helped establish a shared understanding of priorities and system state. I started working on concrete tasks within a layered service structure, gaining hands-on experience with how specifications, application logic, and infrastructure concerns are kept deliberately separated.\n\nA recurring theme has been learning how small changes propagate through well-defined layers, and how clear boundaries make it easier to reason about behavior, testing, and future extensions. Seeing these patterns applied consistently in a real-world codebase has been especially valuable.'
+},
   {
     date: '2025-12-16',
     title: 'Agentic AI Operations Console',
@@ -141,11 +147,11 @@ export default function PortfolioClient() {
       'Visited the PyData Berlin event, which brought together practitioners and researchers across data engineering, machine learning, and applied AI. The talks and discussions reinforced how Python remains a central ecosystem for building, evaluating, and operating production-grade AI systems.'
   },
   {
-    date: '2025-12-01',
-    title: 'Webeet — Internship Started',
-    body:
-      'Started my internship at Webeat. Early focus areas include Hexagonal Architecture, TypeScript-based internal tooling, and collaborative team workflows. Emphasis is placed on clean system boundaries, maintainability, and learning how architectural decisions play out in real production environments.'
-  },
+  date: '2025-12-01',
+  title: 'Webeet — Internship Started',
+  body:
+    'Started my internship at Webeet.\n\nThe onboarding phase focused on understanding the system landscape, team workflows, and architectural foundations. A central topic early on was Hexagonal Architecture (ports & adapters) and how it is used in practice to separate domain logic from infrastructure, delivery mechanisms, and external services.\n\nRather than diving straight into feature development, the initial weeks emphasized reading existing code, understanding boundaries between layers, and learning how architectural decisions support long-term maintainability in a production environment.'
+},
   {
     date: '2025-11-21',
     title: 'Webeet — Internship Preparation',
@@ -455,8 +461,9 @@ export default function PortfolioClient() {
   Comfortable across TypeScript/React frontends and Python/FastAPI backends.
 </p>
 
-<p className="mt-3 text-s s:text-base text-slate-200/95">
-  Open to roles in <b>backend, full-stack, and AI integration</b> — onsite, hybrid, or remote.
+<p className="mt-3 text-sm sm:text-base text-slate-200/95">
+  Open to roles in <b>backend, full-stack, and AI integration</b> — onsite, hybrid, or remote.  
+  Based in Berlin; open to occasional on-site visits outside Berlin when in-person presence is valuable.
 </p>
                   </div>
                 </div>
