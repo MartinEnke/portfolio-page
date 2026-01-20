@@ -65,25 +65,24 @@ export default function PortfolioClient() {
 
     // NEW: Console (local) — keep description + tech compact so the card stays small
     {
-  title: 'Agentic AI Operations Console',
-  desc:
-    'High-stakes operations console blueprint for supervising agentic AI workflows in support, compliance, trust & safety, and internal operations. Enables human-in-the-loop review of agent handoffs and AI artifacts.'
-,
-  tech: [
-    'Next.js',
-    'TypeScript',
-    'Tailwind CSS',
-    'OpenAI API',
-    'REST APIs',
-    'Async Event Queues',
-    'Human-in-the-Loop AI',
-    'Agent Orchestration',
-    'Audit Logging'
-  ],
-  hosted: 'Local',
-  github: 'https://github.com/MartinEnke/FlowOps-AI',
-  preview: '/previews/Console.jpg',
-},
+      title: 'Agentic AI Operations Console',
+      desc:
+        'High-stakes operations console blueprint for supervising agentic AI workflows in support, compliance, trust & safety, and internal operations. Enables human-in-the-loop review of agent handoffs and AI artifacts.',
+      tech: [
+        'Next.js',
+        'TypeScript',
+        'Tailwind CSS',
+        'OpenAI API',
+        'REST APIs',
+        'Async Event Queues',
+        'Human-in-the-Loop AI',
+        'Agent Orchestration',
+        'Audit Logging',
+      ],
+      hosted: 'Local',
+      github: 'https://github.com/MartinEnke/FlowOps-AI',
+      preview: '/previews/Console.jpg',
+    },
 
     {
       title: 'Hirethics AI — Fair Scoring & Audit',
@@ -122,231 +121,213 @@ export default function PortfolioClient() {
     //  githubFrontend: 'https://github.com/MartinEnke/orbital-frontend',
     //  githubBackend: 'https://github.com/MartinEnke/orbital-rl',
     //  preview: '/previews/orbital.png',
-   // },
+    // },
   ]
-
-
 
   const blog: BlogEntry[] = [
     {
-  date: '2026-01-10',
-  title: 'Webeet — Working Within a Layered System',
-  body:
-    'As the internship progressed, my focus shifted from onboarding into contributing across different parts of the system.\n\nDaily standups and ongoing collaboration helped establish a shared understanding of priorities and system state. I started working on concrete tasks within a layered service structure, gaining hands-on experience with how specifications, application logic, and infrastructure concerns are kept deliberately separated.\n\nA recurring theme has been learning how small changes propagate through well-defined layers, and how clear boundaries make it easier to reason about behavior, testing, and future extensions. Seeing these patterns applied consistently in a real-world codebase has been especially valuable.'
-},
-  {
-    date: '2025-12-16',
-    title: 'Agentic AI Operations Console',
-    body:
-      'Started building an Agentic AI Operations Console as a high-stakes operations blueprint for supervising agentic AI workflows in support, compliance, trust & safety, and internal operations.\n\nCore design principles:\n• Human-in-the-loop by default — AI assists, humans decide\n• Explicit agent handoffs with full visibility into status, priority, and escalation context\n• AI-generated artifacts (summaries, risk signals, reply drafts) are read-only, versioned, and auditable\n• Failure-safe design: AI errors never block core operational workflows\n\nThe console is intentionally not a chatbot frontend, but a decision-support system focused on transparency, control, and accountability.'
-  },
-  {
-    date: '2025-12-10',
-    title: 'PyData Berlin — Applied AI & Data Systems',
-    body:
-      'Visited the PyData Berlin event, which brought together practitioners and researchers across data engineering, machine learning, and applied AI. The talks and discussions reinforced how Python remains a central ecosystem for building, evaluating, and operating production-grade AI systems.'
-  },
-  {
-  date: '2025-12-01',
-  title: 'Webeet — Internship Started',
-  body:
-    'Started my internship at Webeet.\n\nThe onboarding phase focused on understanding the system landscape, team workflows, and architectural foundations. A central topic early on was Hexagonal Architecture (ports & adapters) and how it is used in practice to separate domain logic from infrastructure, delivery mechanisms, and external services.\n\nRather than diving straight into feature development, the initial weeks emphasized reading existing code, understanding boundaries between layers, and learning how architectural decisions support long-term maintainability in a production environment.'
-},
-  {
-    date: '2025-11-21',
-    title: 'Webeet — Internship Preparation',
-    body:
-      'Prepared for my internship at Webeat by getting familiar with tooling, reviewing code standards, and setting up a small local practice environment to hit the ground running.'
-  },
-  {
-    date: '2025-11-15',
-    title: 'Career Preparation — Masterschool',
-    body:
-      'Started the Masterschool career preparation track: refining projects, polishing documentation, upgrading my portfolio, and preparing for the next step. A very motivating phase.'
-  },
-  {
-    date: '2025-11-08',
-    title: 'MCP & BMAD — Concept Deep Dive',
-    body:
-      'Explored the Model Context Protocol (MCP) and Berkeley Modular Autonomous Design (BMAD). Both offer compelling perspectives on agent orchestration, tool use, and structured agentic workflows. Lots of ideas brewing.'
-  },
-  {
-    date: '2025-11-02',
-    title: 'Masterschool — Final Exam Results',
-    body:
-      'Finished the final Backend & GenAI Engineering exam with a score of 96.7%. Feeling proud of the journey and grateful for the progress over the past year.'
-  },
-  {
-    date: '2025-10-29',
-    title: 'Masterschool — Final Exam Preparation',
-    body:
-      'Preparing for the final Masterschool exam in Backend & GenAI Engineering. Feels like the culmination of months of growth and countless small breakthroughs.'
-  },
-  {
-    date: '2025-10-28',
-    title: 'Hirethics AI — CV Scoring, Bias Checks & PDF Parsing',
-    body:
-      'Expanded CV PDF ingestion with structure-aware parsing. Added bias-neutral scoring and introduced an ethics transparency dashboard to surface scoring logic and audit signals.'
-  },
-  {
-    date: '2025-10-23',
-    title: 'AI Show & Tell — Berlin Community Launch',
-    body:
-      'Attended the first Global AI Community “AI Show & Tell” in Berlin. Real demos, deep technical talks, and strong discussions around agent systems, evaluation, compliance, and AI memory. Inspiring energy — Berlin’s AI ecosystem feels alive and collaborative.'
-  },
-  {
-    date: '2025-10-12',
-    title: 'Hirethics AI — Fair Scoring & Audit',
-    body:
-      'Built local, evidence-bound candidate scoring with bias auditing: LLM scoring with heuristic fallback, rubric-based metrics with quoted spans, blinding and prestige-proxy detection, and an evaluation dashboard (Spearman ρ, Top-K overlap, mean |Δ|). Added recruiter, ethics, and developer viewer modes with exportable audit trails.'
-  },
-  {
-    date: '2025-10-05',
-    title: 'Maestro_Lessons — Pattern Grammar',
-    body:
-      'Refined data schemas for phrase patterns and progression trees. Added tempo-linked notation syntax to explore how lesson content could adapt dynamically. A space where composing meets coding.'
-  },
-  {
-    date: '2025-10-03',
-    title: 'Maestro_Lessons — Study Notes',
-    body:
-      'Started notation experiments for musical logic and rhythm training. Built minimal Python tools to map rhythmic ratios and interval structures as lesson scaffolding.'
-  },
-  {
-    date: '2025-09-30',
-    title: 'Hirethics AI — Kickoff & Scoring Prototype',
-    body:
-      'Kicked off Hirethics AI: FastAPI + Pydantic backend with rubric templates, anonymized inputs, initial LLM scoring loop, and heuristic fallbacks. Frontend scaffolding in React/Vite with clean viewer modes.'
-  },
-  {
-    date: '2025-09-25',
-    title: 'Orbital RL — Split View, Sparklines & Explain',
-    body:
-      'Implemented A/B split view with a synced timeline, sparklines for reward and error metrics, and an “Explain last 10s” LLM summary panel. Polished UI with scientific-style cards.'
-  },
-  {
-    date: '2025-09-17',
-    title: 'Orbital RL — Kickoff & Baselines',
-    body:
-      'Split the project into orbital-rl and orbital-frontend. Built a clean Gymnasium environment, random-policy baseline, PPO training path, and first rollout analytics. Early separation between Random and PPO achieved.'
-  },
-  {
-    date: '2025-09-15',
-    title: 'Integrated Portfolio',
-    body:
-      'Integrated the AI Promo Agent into my portfolio with hover previews and a scrollable blog section.'
-  },
-  {
-    date: '2025-09-08',
-    title: 'Polish & Deploy',
-    body:
-      'Final mobile header fixes, disclaimer overlay, favicon, and deployment on Vercel.'
-  },
-  {
-    date: '2025-09-01',
-    title: 'New Project — AI Promo Agent',
-    body:
-      'Built a creative pipeline from brief to palette to content. Implemented prompt composition, clean PDF export, and UX guardrails.'
-  },
-  {
-    date: '2025-08-25',
-    title: 'Groovebox — Iteration',
-    body:
-      'Added swing, metronome, and haptics. Sessions now persist via localStorage.'
-  },
-  {
-    date: '2025-08-18',
-    title: 'React Sprint — Groovebox',
-    body:
-      'Built a mobile-first Web Audio step sequencer with a focus on timing accuracy and a friendly save flow.'
-  },
-  {
-    date: '2025-08-11',
-    title: 'ZoundZcope Presentation — Complete',
-    body:
-      'Presented ZoundZcope live and received great feedback on the A/B compare workflow and RAG usefulness.'
-  },
-  {
-    date: '2025-08-04',
-    title: 'Presentation Preparation',
-    body:
-      'Prepared storyline, demo scripts, README updates, and short screen captures. Dry-runs with peers.'
-  },
-  {
-    date: '2025-07-28',
-    title: 'Observability & Production Hardening',
-    body:
-      'Improved logging, added rate limiting, and tuned cold-start behavior on Render.'
-  },
-  {
-    date: '2025-07-21',
-    title: 'Frontend Polish & UX',
-    body:
-      'Added loading states, error boundaries, and tightened layout to reduce time-to-first-insight.'
-  },
-  {
-    date: '2025-07-14',
-    title: 'RAG for Docs & Tutorials',
-    body:
-      'Chunked documentation, built a retrieval pipeline, and grounded AI critiques with relevant snippets to reduce hallucinations.'
-  },
-  {
-    date: '2025-07-07',
-    title: 'Multi-Track AI Compare',
-    body:
-      'Implemented side-by-side AI feedback across multiple versions with session save and restore.'
-  },
-  {
-    date: '2025-06-30',
-    title: 'Follow-up Chat — ZoundZcope',
-    body:
-      'Built context-aware follow-ups per upload with token management and safe truncation logic.'
-  },
-  {
-    date: '2025-06-23',
-    title: 'Deployed: The Quiet Almanac',
-    body:
-      'Launched the blog with multilingual support, AI moderation, translation, and read-aloud. First successful production deployment.'
-  },
-  {
-    date: '2025-06-16',
-    title: 'Structured AI Critique',
-    body:
-      'Integrated structured JSON critiques via OpenAI with caching, issue tagging, and actionable feedback formatting.'
-  },
-  {
-    date: '2025-06-09',
-    title: 'Audio Features & UI',
-    body:
-      'Implemented audio feature extraction with librosa and added waveform previews with a responsive UI.'
-  },
-  {
-    date: '2025-06-02',
-    title: 'Kickoff — ZoundZcope AI',
-    body:
-      'Bootstrapped the FastAPI backend and audio pipeline. Planned the data model for uploads and per-session analysis.'
-  },
-  {
-    date: '2025-05-26',
-    title: 'Prompting & Evaluations',
-    body:
-      'Designed prompt patterns for structure and precision. Sketched a lightweight evaluation harness for schema compliance.'
-  },
-  {
-    date: '2025-05-19',
-    title: 'GenAI Engineering — LLM Theory Deep Dive',
-    body:
-      'Covered tokenization, context windows, embeddings, vector search, grounding, and safety. Established baseline evaluation concepts.'
-  },
-  {
-    date: '2025-05-12',
-    title: 'Masterschool — Core Complete',
-    body:
-      'Completed the core curriculum. Built multiple small apps (auth, REST, CRUD) and strengthened Python and SQL fundamentals.'
-  },
-]
-
-
+      date: '2026-01-10',
+      title: 'Webeet — Working Within a Layered System',
+      body:
+        'As the internship progressed, my focus shifted from onboarding into contributing across different parts of the system.\n\nDaily standups and ongoing collaboration helped establish a shared understanding of priorities and system state. I started working on concrete tasks within a layered service structure, gaining hands-on experience with how specifications, application logic, and infrastructure concerns are kept deliberately separated.\n\nA recurring theme has been learning how small changes propagate through well-defined layers, and how clear boundaries make it easier to reason about behavior, testing, and future extensions. Seeing these patterns applied consistently in a real-world codebase has been especially valuable.',
+    },
+    {
+      date: '2025-12-16',
+      title: 'Agentic AI Operations Console',
+      body:
+        'Started building an Agentic AI Operations Console as a high-stakes operations blueprint for supervising agentic AI workflows in support, compliance, trust & safety, and internal operations.\n\nCore design principles:\n• Human-in-the-loop by default — AI assists, humans decide\n• Explicit agent handoffs with full visibility into status, priority, and escalation context\n• AI-generated artifacts (summaries, risk signals, reply drafts) are read-only, versioned, and auditable\n• Failure-safe design: AI errors never block core operational workflows\n\nThe console is intentionally not a chatbot frontend, but a decision-support system focused on transparency, control, and accountability.',
+    },
+    {
+      date: '2025-12-10',
+      title: 'PyData Berlin — Applied AI & Data Systems',
+      body:
+        'Visited the PyData Berlin event, which brought together practitioners and researchers across data engineering, machine learning, and applied AI. The talks and discussions reinforced how Python remains a central ecosystem for building, evaluating, and operating production-grade AI systems.',
+    },
+    {
+      date: '2025-12-01',
+      title: 'Webeet — Internship Started',
+      body:
+        'Started my internship at Webeet.\n\nThe onboarding phase focused on understanding the system landscape, team workflows, and architectural foundations. A central topic early on was Hexagonal Architecture (ports & adapters) and how it is used in practice to separate domain logic from infrastructure, delivery mechanisms, and external services.\n\nRather than diving straight into feature development, the initial weeks emphasized reading existing code, understanding boundaries between layers, and learning how architectural decisions support long-term maintainability in a production environment.',
+    },
+    {
+      date: '2025-11-21',
+      title: 'Webeet — Internship Preparation',
+      body:
+        'Prepared for my internship at Webeat by getting familiar with tooling, reviewing code standards, and setting up a small local practice environment to hit the ground running.',
+    },
+    {
+      date: '2025-11-15',
+      title: 'Career Preparation — Masterschool',
+      body:
+        'Started the Masterschool career preparation track: refining projects, polishing documentation, upgrading my portfolio, and preparing for the next step. A very motivating phase.',
+    },
+    {
+      date: '2025-11-08',
+      title: 'MCP & BMAD — Concept Deep Dive',
+      body:
+        'Explored the Model Context Protocol (MCP) and Berkeley Modular Autonomous Design (BMAD). Both offer compelling perspectives on agent orchestration, tool use, and structured agentic workflows. Lots of ideas brewing.',
+    },
+    {
+      date: '2025-11-02',
+      title: 'Masterschool — Final Exam Results',
+      body:
+        'Finished the final Backend & GenAI Engineering exam with a score of 96.7%. Feeling proud of the journey and grateful for the progress over the past year.',
+    },
+    {
+      date: '2025-10-29',
+      title: 'Masterschool — Final Exam Preparation',
+      body:
+        'Preparing for the final Masterschool exam in Backend & GenAI Engineering. Feels like the culmination of months of growth and countless small breakthroughs.',
+    },
+    {
+      date: '2025-10-28',
+      title: 'Hirethics AI — CV Scoring, Bias Checks & PDF Parsing',
+      body:
+        'Expanded CV PDF ingestion with structure-aware parsing. Added bias-neutral scoring and introduced an ethics transparency dashboard to surface scoring logic and audit signals.',
+    },
+    {
+      date: '2025-10-23',
+      title: 'AI Show & Tell — Berlin Community Launch',
+      body:
+        'Attended the first Global AI Community “AI Show & Tell” in Berlin. Real demos, deep technical talks, and strong discussions around agent systems, evaluation, compliance, and AI memory. Inspiring energy — Berlin’s AI ecosystem feels alive and collaborative.',
+    },
+    {
+      date: '2025-10-12',
+      title: 'Hirethics AI — Fair Scoring & Audit',
+      body:
+        'Built local, evidence-bound candidate scoring with bias auditing: LLM scoring with heuristic fallback, rubric-based metrics with quoted spans, blinding and prestige-proxy detection, and an evaluation dashboard (Spearman ρ, Top-K overlap, mean |Δ|). Added recruiter, ethics, and developer viewer modes with exportable audit trails.',
+    },
+    {
+      date: '2025-10-05',
+      title: 'Maestro_Lessons — Pattern Grammar',
+      body:
+        'Refined data schemas for phrase patterns and progression trees. Added tempo-linked notation syntax to explore how lesson content could adapt dynamically. A space where composing meets coding.',
+    },
+    {
+      date: '2025-10-03',
+      title: 'Maestro_Lessons — Study Notes',
+      body:
+        'Started notation experiments for musical logic and rhythm training. Built minimal Python tools to map rhythmic ratios and interval structures as lesson scaffolding.',
+    },
+    {
+      date: '2025-09-30',
+      title: 'Hirethics AI — Kickoff & Scoring Prototype',
+      body:
+        'Kicked off Hirethics AI: FastAPI + Pydantic backend with rubric templates, anonymized inputs, initial LLM scoring loop, and heuristic fallbacks. Frontend scaffolding in React/Vite with clean viewer modes.',
+    },
+    {
+      date: '2025-09-25',
+      title: 'Orbital RL — Split View, Sparklines & Explain',
+      body:
+        'Implemented A/B split view with a synced timeline, sparklines for reward and error metrics, and an “Explain last 10s” LLM summary panel. Polished UI with scientific-style cards.',
+    },
+    {
+      date: '2025-09-17',
+      title: 'Orbital RL — Kickoff & Baselines',
+      body:
+        'Split the project into orbital-rl and orbital-frontend. Built a clean Gymnasium environment, random-policy baseline, PPO training path, and first rollout analytics. Early separation between Random and PPO achieved.',
+    },
+    {
+      date: '2025-09-15',
+      title: 'Integrated Portfolio',
+      body: 'Integrated the AI Promo Agent into my portfolio with hover previews and a scrollable blog section.',
+    },
+    {
+      date: '2025-09-08',
+      title: 'Polish & Deploy',
+      body: 'Final mobile header fixes, disclaimer overlay, favicon, and deployment on Vercel.',
+    },
+    {
+      date: '2025-09-01',
+      title: 'New Project — AI Promo Agent',
+      body: 'Built a creative pipeline from brief to palette to content. Implemented prompt composition, clean PDF export, and UX guardrails.',
+    },
+    {
+      date: '2025-08-25',
+      title: 'Groovebox — Iteration',
+      body: 'Added swing, metronome, and haptics. Sessions now persist via localStorage.',
+    },
+    {
+      date: '2025-08-18',
+      title: 'React Sprint — Groovebox',
+      body: 'Built a mobile-first Web Audio step sequencer with a focus on timing accuracy and a friendly save flow.',
+    },
+    {
+      date: '2025-08-11',
+      title: 'ZoundZcope Presentation — Complete',
+      body: 'Presented ZoundZcope live and received great feedback on the A/B compare workflow and RAG usefulness.',
+    },
+    {
+      date: '2025-08-04',
+      title: 'Presentation Preparation',
+      body: 'Prepared storyline, demo scripts, README updates, and short screen captures. Dry-runs with peers.',
+    },
+    {
+      date: '2025-07-28',
+      title: 'Observability & Production Hardening',
+      body: 'Improved logging, added rate limiting, and tuned cold-start behavior on Render.',
+    },
+    {
+      date: '2025-07-21',
+      title: 'Frontend Polish & UX',
+      body: 'Added loading states, error boundaries, and tightened layout to reduce time-to-first-insight.',
+    },
+    {
+      date: '2025-07-14',
+      title: 'RAG for Docs & Tutorials',
+      body:
+        'Chunked documentation, built a retrieval pipeline, and grounded AI critiques with relevant snippets to reduce hallucinations.',
+    },
+    {
+      date: '2025-07-07',
+      title: 'Multi-Track AI Compare',
+      body: 'Implemented side-by-side AI feedback across multiple versions with session save and restore.',
+    },
+    {
+      date: '2025-06-30',
+      title: 'Follow-up Chat — ZoundZcope',
+      body: 'Built context-aware follow-ups per upload with token management and safe truncation logic.',
+    },
+    {
+      date: '2025-06-23',
+      title: 'Deployed: The Quiet Almanac',
+      body:
+        'Launched the blog with multilingual support, AI moderation, translation, and read-aloud. First successful production deployment.',
+    },
+    {
+      date: '2025-06-16',
+      title: 'Structured AI Critique',
+      body: 'Integrated structured JSON critiques via OpenAI with caching, issue tagging, and actionable feedback formatting.',
+    },
+    {
+      date: '2025-06-09',
+      title: 'Audio Features & UI',
+      body: 'Implemented audio feature extraction with librosa and added waveform previews with a responsive UI.',
+    },
+    {
+      date: '2025-06-02',
+      title: 'Kickoff — ZoundZcope AI',
+      body: 'Bootstrapped the FastAPI backend and audio pipeline. Planned the data model for uploads and per-session analysis.',
+    },
+    {
+      date: '2025-05-26',
+      title: 'Prompting & Evaluations',
+      body:
+        'Designed prompt patterns for structure and precision. Sketched a lightweight evaluation harness for schema compliance.',
+    },
+    {
+      date: '2025-05-19',
+      title: 'GenAI Engineering — LLM Theory Deep Dive',
+      body:
+        'Covered tokenization, context windows, embeddings, vector search, grounding, and safety. Established baseline evaluation concepts.',
+    },
+    {
+      date: '2025-05-12',
+      title: 'Masterschool — Core Complete',
+      body:
+        'Completed the core curriculum. Built multiple small apps (auth, REST, CRUD) and strengthened Python and SQL fundamentals.',
+    },
+  ]
 
   const [sending, setSending] = useState<false | 'sending' | 'ok' | 'error'>(false)
   const [errorMsg, setErrorMsg] = useState('')
@@ -417,28 +398,33 @@ export default function PortfolioClient() {
         <main className="relative z-10 mx-auto w-full max-w-6xl" style={{ padding: 'calc(var(--cell, 28px) * 0.9)' }}>
           {/* Hero */}
           <motion.section initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-6 sm:mb-8">
-            <div className="grid grid-cols-12" style={{ gap: 'calc(var(--cell, 28px) * 0.5)' }}>
+            <div className="grid grid-cols-12 items-stretch" style={{ gap: 'calc(var(--cell, 28px) * 0.5)' }}>
               {/* card (brighter) */}
-              <div className="col-span-12 md:col-span-8 border border-white/15 bg-white/10 backdrop-blur-xl shadow-lg shadow-black/30" style={{ padding: 'calc(var(--cell, 28px) * 0.8)' }}>
+              <div
+                className="col-span-12 md:col-span-8 border border-white/15 bg-white/10 backdrop-blur-xl shadow-lg shadow-black/30 h-full"
+                style={{ padding: 'calc(var(--cell, 28px) * 0.8)' }}
+              >
                 <div className="flex flex-col gap-5 md:gap-6">
                   <div>
                     <h1 className="font-semibold tracking-tight leading-[1.15]">
-                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-200 to-cyan-200
-                                       text-3xl sm:text-5xl md:text-6xl">
+                      <span
+                        className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-200 to-cyan-200
+                                       text-3xl sm:text-5xl md:text-6xl"
+                      >
                         Martin Enke
                       </span>
-                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-200 to-cyan-200
-                                     text-2xl sm:text-3xl md:text-5xl leading-[1.25] pb-[3px]">
+                      <span
+                        className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-200 to-cyan-200
+                                     text-2xl sm:text-3xl md:text-5xl leading-[1.25] pb-[3px]"
+                      >
                         Full-stack & AI Engineer
                       </span>
                     </h1>
 
-                    <p className="mt-3 text-sm sm:text-base text-slate-200">
-  Python · FastAPI/Flask · LLMs (RAG) · Prompt Engineering · TypeScript
-</p>
-<p className="mt-3 text-sm sm:text-base text-slate-200/95">
-  I build clean, scalable APIs and full-stack applications, integrating LLM features where they add real value.
-</p>
+                    <p className="mt-3 text-sm sm:text-base text-slate-200">Python · FastAPI/Flask · LLMs (RAG) · Prompt Engineering · TypeScript</p>
+                    <p className="mt-3 text-sm sm:text-base text-slate-200/95">
+                      I build clean, scalable APIs and full-stack applications, integrating LLM features where they add real value.
+                    </p>
                     <br />
                   </div>
 
@@ -446,10 +432,20 @@ export default function PortfolioClient() {
                     <a href="#contact" className="border border-white/20 bg-white/15 px-4 py-2 text-sm hover:bg-white/20 active:scale-[.99] transition">
                       Contact
                     </a>
-                    <a href="https://github.com/MartinEnke" target="_blank" rel="noopener noreferrer" className="border border-white/20 bg-white/15 px-4 py-2 text-sm hover:bg-white/20 active:scale-[.99] transition">
+                    <a
+                      href="https://github.com/MartinEnke"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="border border-white/20 bg-white/15 px-4 py-2 text-sm hover:bg-white/20 active:scale-[.99] transition"
+                    >
                       GitHub
                     </a>
-                    <a href="https://www.linkedin.com/in/martin-enke-/" target="_blank" rel="noopener noreferrer" className="border border-white/20 bg-white/15 px-4 py-2 text-sm hover:bg-white/20 active:scale-[.99] transition">
+                    <a
+                      href="https://www.linkedin.com/in/martin-enke-/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="border border-white/20 bg-white/15 px-4 py-2 text-sm hover:bg-white/20 active:scale-[.99] transition"
+                    >
                       LinkedIn
                     </a>
                   </div>
@@ -457,29 +453,33 @@ export default function PortfolioClient() {
                   <div className="text-sm text-slate-200/95">
                     <div className="text-sm text-slate-200/95" />
                     <p>
-  Full-stack & AI engineer with roots in music. <br />
-  Comfortable across TypeScript/React frontends and Python/FastAPI backends.
-</p>
+                      Full-stack & AI engineer with roots in music. <br />
+                      Comfortable across TypeScript/React frontends and Python/FastAPI backends.
+                    </p>
 
-<p className="mt-3 text-sm sm:text-base text-slate-200/95">
-  Open to roles in <b>backend, full-stack, and AI integration</b> — onsite, hybrid, or remote.  
-  Based in Berlin; open to occasional on-site visits outside Berlin when in-person presence is valuable.
-</p>
+                    <p className="mt-3 text-sm sm:text-base text-slate-200/95">
+                      Open to roles in <b>backend, full-stack, and AI integration</b> — onsite, hybrid, or remote.
+                    </p>
                   </div>
                 </div>
               </div>
 
               {/* Photo */}
-              <div className="col-span-12 md:col-span-4 border border-white/15 bg-white/10 backdrop-blur-xl shadow-lg shadow-black/30 flex items-center justify-center" style={{ padding: 'calc(var(--cell, 28px) * 0.3)', aspectRatio: '3 / 4' }}>
-                <Image
-                  src="/me.jpg"
-                  alt="Martin Enke"
-                  width={600}
-                  height={800}
-                  className="h-full w-full object-cover"
-                  style={{ filter: 'contrast(1.08) saturate(1.08)' }}
-                  priority
-                />
+              <div
+                className="col-span-12 md:col-span-4 border border-white/15 bg-white/10 backdrop-blur-xl shadow-lg shadow-black/30 flex items-stretch"
+                style={{ padding: 'calc(var(--cell, 28px) * 0.3)' }}
+              >
+                <div className="relative w-full h-full" style={{ aspectRatio: '3 / 4' }}>
+                  <Image
+                    src="/me.jpg"
+                    alt="Martin Enke"
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover"
+                    style={{ filter: 'contrast(1.08) saturate(1.08)' }}
+                    priority
+                  />
+                </div>
               </div>
             </div>
           </motion.section>
@@ -504,9 +504,7 @@ export default function PortfolioClient() {
               {/* Contact */}
               <div className="col-span-12 md:col-span-8 border border-white/15 bg-white/10 backdrop-blur-xl shadow-lg shadow-black/30" style={{ padding: 'calc(var(--cell, 28px) * 0.8)' }}>
                 <h3 className="text-xl font-medium tracking-tight mb-3">Contact</h3>
-                <p className="text-slate-200/95 text-sm mb-4">
-                  Open to work—please share a few details and I’ll respond promptly.
-                </p>
+                <p className="text-slate-200/95 text-sm mb-4">Open to work—please share a few details and I’ll respond promptly.</p>
 
                 <form onSubmit={onSubmit} className="grid grid-cols-12 gap-3">
                   <div className="hidden">
@@ -553,12 +551,8 @@ export default function PortfolioClient() {
                     >
                       {sending === 'sending' ? 'Sending…' : 'Send message'}
                     </button>
-                    {sending === 'ok' && (
-                      <span className="text-xs text-emerald-300">Thanks! Your message has been sent.</span>
-                    )}
-                    {sending === 'error' && (
-                      <span className="text-xs text-rose-300">{errorMsg}</span>
-                    )}
+                    {sending === 'ok' && <span className="text-xs text-emerald-300">Thanks! Your message has been sent.</span>}
+                    {sending === 'error' && <span className="text-xs text-rose-300">{errorMsg}</span>}
                   </div>
                 </form>
 
@@ -585,15 +579,9 @@ export default function PortfolioClient() {
                   <ul className="flex flex-col gap-3">
                     {blog.map((b) => (
                       <li key={b.date} className="border border-white/15 bg-white/10 px-3 py-3">
-                        <div className="text-[11px] uppercase tracking-wide text-slate-300">
-                          {formatBlogDate(b.date)}
-                        </div>
-                        <div className="mt-1 text-sm font-semibold text-slate-50">
-                          {b.title}
-                        </div>
-                        <p className="mt-1 text-sm text-slate-200/95">
-                          {b.body}
-                        </p>
+                        <div className="text-[11px] uppercase tracking-wide text-slate-300">{formatBlogDate(b.date)}</div>
+                        <div className="mt-1 text-sm font-semibold text-slate-50">{b.title}</div>
+                        <p className="mt-1 text-sm text-slate-200/95">{b.body}</p>
                         {b.tags?.length ? (
                           <div className="mt-2 flex flex-wrap gap-2">
                             {b.tags.map((t) => (
@@ -691,58 +679,57 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
 
         {(project.href || project.github || project.githubFrontend || project.githubBackend) && (
-  <div className="mt-4 flex flex-wrap gap-2">
-    {project.href && (
-      <button
-        className="border border-white/20 bg-blue-400/15 px-3 py-1.5 text-xs hover:bg-blue-400/25 transition"
-        onClick={(e) => {
-          e.preventDefault()
-          e.stopPropagation()
-          window.open(project.href!, '_blank', 'noopener,noreferrer')
-        }}
-      >
-        Live
-      </button>
-    )}
-    {project.github && (
-      <button
-        className="border border-white/20 bg-blue-300/15 px-3 py-1.5 text-xs hover:bg-blue-300/25 transition"
-        onClick={(e) => {
-          e.preventDefault()
-          e.stopPropagation()
-          window.open(project.github!, '_blank', 'noopener,noreferrer')
-        }}
-      >
-        GitHub
-      </button>
-    )}
-    {project.githubFrontend && (
-      <button
-        className="border border-white/20 bg-blue-300/15 px-3 py-1.5 text-xs hover:bg-blue-300/25 transition"
-        onClick={(e) => {
-          e.preventDefault()
-          e.stopPropagation()
-          window.open(project.githubFrontend!, '_blank', 'noopener,noreferrer')
-        }}
-      >
-        GitHub (FE)
-      </button>
-    )}
-    {project.githubBackend && (
-      <button
-        className="border border-white/20 bg-blue-300/15 px-3 py-1.5 text-xs hover:bg-blue-300/25 transition"
-        onClick={(e) => {
-          e.preventDefault()
-          e.stopPropagation()
-          window.open(project.githubBackend!, '_blank', 'noopener,noreferrer')
-        }}
-      >
-        GitHub (BE)
-      </button>
-    )}
-  </div>
-)}
-
+          <div className="mt-4 flex flex-wrap gap-2">
+            {project.href && (
+              <button
+                className="border border-white/20 bg-blue-400/15 px-3 py-1.5 text-xs hover:bg-blue-400/25 transition"
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  window.open(project.href!, '_blank', 'noopener,noreferrer')
+                }}
+              >
+                Live
+              </button>
+            )}
+            {project.github && (
+              <button
+                className="border border-white/20 bg-blue-300/15 px-3 py-1.5 text-xs hover:bg-blue-300/25 transition"
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  window.open(project.github!, '_blank', 'noopener,noreferrer')
+                }}
+              >
+                GitHub
+              </button>
+            )}
+            {project.githubFrontend && (
+              <button
+                className="border border-white/20 bg-blue-300/15 px-3 py-1.5 text-xs hover:bg-blue-300/25 transition"
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  window.open(project.githubFrontend!, '_blank', 'noopener,noreferrer')
+                }}
+              >
+                GitHub (FE)
+              </button>
+            )}
+            {project.githubBackend && (
+              <button
+                className="border border-white/20 bg-blue-300/15 px-3 py-1.5 text-xs hover:bg-blue-300/25 transition"
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  window.open(project.githubBackend!, '_blank', 'noopener,noreferrer')
+                }}
+              >
+                GitHub (BE)
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )
@@ -760,12 +747,7 @@ function ProjectCard({ project }: { project: Project }) {
       {CardInner}
     </a>
   ) : (
-    <div
-      className="group col-span-12 md:col-span-6 lg:col-span-6"
-      onMouseEnter={onEnter}
-      onMouseMove={updatePos}
-      onMouseLeave={onLeave}
-    >
+    <div className="group col-span-12 md:col-span-6 lg:col-span-6" onMouseEnter={onEnter} onMouseMove={updatePos} onMouseLeave={onLeave}>
       {CardInner}
     </div>
   )
@@ -775,10 +757,7 @@ function ProjectCard({ project }: { project: Project }) {
       {CardWrapper}
       {mounted && show && !isCoarse && (project.preview || project.previewVideo) &&
         createPortal(
-          <div
-            className="pointer-events-none fixed z-[9999] transition duration-150 ease-out"
-            style={{ left: pos.left, top: pos.top, width: PREVIEW_WIDTH }}
-          >
+          <div className="pointer-events-none fixed z-[9999] transition duration-150 ease-out" style={{ left: pos.left, top: pos.top, width: PREVIEW_WIDTH }}>
             <div className="preview-glow rounded-xl overflow-visible border border-white/20 shadow-2xl shadow-black/50 bg-black/30">
               {project.previewVideo ? (
                 <video src={project.previewVideo} autoPlay loop muted playsInline className="block w-full h-auto" />
@@ -994,7 +973,10 @@ function GridShimmer() {
             glow = Math.exp(-dist2 / (2 * sigma * sigma))
           }
 
-          let sTotal = 0, rAcc = 0, gAcc = 0, bAcc = 0
+          let sTotal = 0,
+            rAcc = 0,
+            gAcc = 0,
+            bAcc = 0
           for (const { p, mixT, color, ux, uy } of passCache) {
             const proj = x * ux + y * uy
             const dxs = Math.abs(proj - p.pos)
@@ -1008,7 +990,9 @@ function GridShimmer() {
             }
           }
 
-          let r = 255, g = 255, b = 255
+          let r = 255,
+            g = 255,
+            b = 255
           if (sTotal > 0) {
             r = Math.round(rAcc / sTotal)
             g = Math.round(gAcc / sTotal)
