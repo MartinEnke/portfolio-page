@@ -7,6 +7,7 @@ import { createPortal } from 'react-dom'
 
 type Project = {
   title: string
+  category: string
   desc: string
   tech: string[]
   hosted?: string
@@ -42,70 +43,76 @@ export default function PortfolioClient() {
   const isWip = process.env.NEXT_PUBLIC_WIP === 'true'
 
   const projects: Project[] = [
-  {
-    title: 'ZoundZcope AI',
-    desc:
-      'Audio analysis platform for music producers combining DSP metrics with structured AI critique, follow-up reasoning, A/B model comparison, and RAG-powered documentation.',
-    tech: ['Python', 'FastAPI', 'SQLAlchemy', 'OpenAI API', 'FAISS', 'Tailwind'],
-    hosted: 'Render',
-    href: 'https://zoundzcope-ai.onrender.com/',
-    github: 'https://github.com/MartinEnke/ZoundZcope_AI',
-    preview: '/previews/zoundzcope.jpg',
-  },
+    {
+      title: 'ZoundZcope AI',
+      category: 'AI System',
+      desc:
+        'Audio analysis platform for music producers combining DSP metrics with structured AI critique, follow-up reasoning, A/B model comparison, and RAG-powered documentation.',
+      tech: ['Python', 'FastAPI', 'SQLAlchemy', 'OpenAI API', 'FAISS', 'Tailwind'],
+      hosted: 'Render',
+      href: 'https://zoundzcope-ai.onrender.com/',
+      github: 'https://github.com/MartinEnke/ZoundZcope_AI',
+      preview: '/previews/zoundzcope.jpg',
+    },
 
-  {
-    title: 'The Quiet Almanac',
-    desc:
-      'Full-stack multilingual blog platform with authentication, AI moderation, AI translation, text-to-speech reading, comments, likes, notifications, and feedback workflows.',
-    tech: ['Python', 'Flask', 'OpenAI API', 'PostgreSQL', 'JWT', 'Tailwind CSS'],
-    hosted: 'Render',
-    href: 'https://the-quiet-almanac.onrender.com/',
-    github: 'https://github.com/MartinEnke/Masterblog_API',
-    preview: '/previews/almanac.jpg',
-  },
+    {
+      title: 'The Quiet Almanac',
+      category: 'Full-Stack Application',
+      desc:
+        'Full-stack multilingual blog platform with authentication, AI moderation, AI translation, text-to-speech reading, comments, likes, notifications, and feedback workflows.',
+      tech: ['Python', 'Flask', 'OpenAI API', 'PostgreSQL', 'JWT', 'Tailwind CSS'],
+      hosted: 'Render',
+      href: 'https://the-quiet-almanac.onrender.com/',
+      github: 'https://github.com/MartinEnke/Masterblog_API',
+      preview: '/previews/almanac.jpg',
+    },
 
-  {
-    title: 'SupportOps Portal',
-    desc:
-      'Full-stack incident management application built with Spring Boot and Angular featuring REST APIs, validation, filtering, and frontend-backend integration.',
-    tech: ['Java', 'Spring Boot', 'Angular', 'REST API', 'H2 Database', 'Maven'],
-    hosted: 'Local',
-    github: 'https://github.com/MartinEnke/SupportOps_Portal',
-    preview: '/previews/supportops.jpg',
-  },
+    {
+      title: 'SupportOps Portal',
+      category: 'Full-Stack Application',
+      desc:
+        'Full-stack incident management application built with Spring Boot and Angular featuring REST APIs, validation, filtering, and frontend-backend integration.',
+      tech: ['Java', 'Spring Boot', 'Angular', 'REST API', 'H2 Database', 'Maven'],
+      hosted: 'Local',
+      github: 'https://github.com/MartinEnke/SupportOps_Portal',
+      preview: '/previews/supportops.jpg',
+    },
 
-  {
-    title: 'Groovebox',
-    desc:
-      'Mobile-first drum loop sequencer built with the Web Audio API supporting recording, swing, sidechain, effects, compression, and session saving.',
-    tech: ['React', 'Vite', 'TypeScript', 'Web Audio API', 'localStorage'],
-    hosted: 'Vercel',
-    href: 'https://groovebox-martin.vercel.app/',
-    github: 'https://github.com/MartinEnke/groovebox2',
-    preview: '/previews/groovebox.jpg',
-  },
+    {
+      title: 'Groovebox',
+      category: 'Creative Tool',
+      desc:
+        'Mobile-first drum loop sequencer built with the Web Audio API supporting recording, swing, sidechain, effects, compression, and session saving.',
+      tech: ['React', 'Vite', 'TypeScript', 'Web Audio API', 'localStorage'],
+      hosted: 'Vercel',
+      href: 'https://groovebox-martin.vercel.app/',
+      github: 'https://github.com/MartinEnke/groovebox2',
+      preview: '/previews/groovebox.jpg',
+    },
 
-  {
-    title: 'Hirethics AI — Fair Scoring & Audit',
-    desc:
-      'Transparent candidate scoring system combining LLM evaluation with rubric-based metrics and bias auditing, including a review dashboard and heuristic fallback scoring.',
-    tech: ['Python', 'FastAPI', 'Pydantic', 'OpenAI API', 'React', 'Vite', 'TypeScript', 'Tailwind', 'Framer Motion'],
-    hosted: 'Local',
-    github: 'https://github.com/MartinEnke/hirethics_ai',
-    preview: '/previews/hirethics.png',
-  },
+    {
+      title: 'Hirethics AI — Fair Scoring & Audit',
+      category: 'AI System',
+      desc:
+        'Transparent candidate scoring system combining LLM evaluation with rubric-based metrics and bias auditing, including a review dashboard and heuristic fallback scoring.',
+      tech: ['Python', 'FastAPI', 'Pydantic', 'OpenAI API', 'React', 'Vite', 'TypeScript', 'Tailwind', 'Framer Motion'],
+      hosted: 'Local',
+      github: 'https://github.com/MartinEnke/hirethics_ai',
+      preview: '/previews/hirethics.png',
+    },
 
-  {
-    title: 'AI Music Promo Agent',
-    desc:
-      'AI-assisted creative campaign generator that produces platform-specific promotional content, artwork prompts, and structured campaign exports as shareable PDFs.',
-    tech: ['Next.js', 'TypeScript', 'Serverless Functions', 'OpenAI API', 'Tailwind', 'jsPDF'],
-    hosted: 'Vercel',
-    href: 'https://ai-promo-agent.vercel.app/',
-    github: 'https://github.com/MartinEnke/creative-promo-agent',
-    preview: '/previews/promo_agent.jpg',
-  },
-];
+    {
+      title: 'AI Music Promo Agent',
+      category: 'AI Tool',
+      desc:
+        'AI-assisted creative campaign generator that produces platform-specific promotional content, artwork prompts, and structured campaign exports as shareable PDFs.',
+      tech: ['Next.js', 'TypeScript', 'Serverless Functions', 'OpenAI API', 'Tailwind', 'jsPDF'],
+      hosted: 'Vercel',
+      href: 'https://ai-promo-agent.vercel.app/',
+      github: 'https://github.com/MartinEnke/creative-promo-agent',
+      preview: '/previews/promo_agent.jpg',
+    },
+  ];
     //{
     //  title: 'Orbital - Reinforcement Learning',
     //  desc:
@@ -485,18 +492,39 @@ export default function PortfolioClient() {
           </motion.section>
 
           {/* Projects */}
-          <motion.section initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
-            <div className="flex items-center justify-between" style={{ marginBottom: 'calc(var(--cell, 28px) * 0.4)' }}>
-              <h2 className="text-lg sm:text-xl md:text-2xl font-medium tracking-tight">Featured Projects</h2>
-              <span className="hidden sm:inline text-xs text-slate-300">Vercel / Render / Local</span>
-            </div>
+<motion.section
+  initial={{ opacity: 0, y: 10 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.1 }}
+>
+  <div
+    className="flex items-start justify-between"
+    style={{ marginBottom: 'calc(var(--cell, 28px) * 0.4)' }}
+  >
+    <div>
+      <h2 className="text-lg sm:text-xl md:text-2xl font-medium tracking-tight">
+        Featured Projects
+      </h2>
 
-            <div className="grid grid-cols-12" style={{ gap: 'calc(var(--cell, 28px) * 0.5)' }}>
-              {projects.map((p) => (
-                <ProjectCard key={p.title} project={p} />
-              ))}
-            </div>
-          </motion.section>
+      <p className="text-xs text-slate-400 mt-1 tracking-wide">
+        AI Systems · Full-Stack Applications · Creative Tools
+      </p>
+    </div>
+
+    <span className="hidden sm:inline text-xs text-slate-300">
+      Vercel / Render / Local
+    </span>
+  </div>
+
+  <div
+    className="grid grid-cols-12"
+    style={{ gap: 'calc(var(--cell, 28px) * 0.5)' }}
+  >
+    {projects.map((p) => (
+      <ProjectCard key={p.title} project={p} />
+    ))}
+  </div>
+</motion.section>
 
           {/* Contact + Blog */}
           <motion.section id="contact" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="mt-8">
