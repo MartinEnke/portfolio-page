@@ -421,9 +421,9 @@ export default function PortfolioClient() {
                       </span>
                     </h1>
 
-                    <p className="mt-3 text-sm sm:text-base text-slate-200">Python · FastAPI/Flask · LLMs (RAG) · Prompt Engineering · TypeScript</p>
+                    <p className="mt-3 text-sm sm:text-base text-slate-200">Python · Java · FastAPI/Flask · Spring Boot · TypeScript · React · LLM Systems (RAG)</p>
                     <p className="mt-3 text-sm sm:text-base text-slate-200/95">
-                      I build clean, scalable APIs and full-stack applications, integrating LLM features where they add real value.
+                      I build scalable APIs and full-stack systems, integrating LLM capabilities where they create real product value.
                     </p>
                     <br />
                   </div>
@@ -454,7 +454,7 @@ export default function PortfolioClient() {
                     <div className="text-sm text-slate-200/95" />
                     <p>
                       Full-stack & AI engineer with roots in music. <br />
-                      Comfortable across TypeScript/React frontends and Python/FastAPI backends.
+                      Comfortable across TypeScript/React frontends and Python/FastAPI or Java/Spring Boot backends.
                     </p>
 
                     <p className="mt-3 text-sm sm:text-base text-slate-200/95">
