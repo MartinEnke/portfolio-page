@@ -120,6 +120,12 @@ export default function PortfolioClient() {
 
   const blog: BlogEntry[] = [
     {
+  date: '2026-03-10',
+  title: 'SupportOps Portal — Learning a New Stack Through a Small System',
+  body:
+    'To better understand the Java ecosystem, I built a small full-stack incident management tool using Spring Boot and Angular — technologies that were largely new to me. The goal was to learn how these frameworks structure applications by implementing a simple but complete system end-to-end.\n\nThe backend exposes REST endpoints for managing incidents, including validation and filtering, while the Angular frontend provides a lightweight interface for creating and reviewing tickets. Building the system from scratch required working through typical concerns such as request handling, cross-origin communication, and how frontend components interact with backend services.\n\nWhat made the exercise particularly valuable was seeing how common architectural patterns appear across different stacks. Even in a small project, separating concerns between API layers, service logic, and UI components helps keep the system understandable and easier to extend. Exploring these patterns in an unfamiliar environment reinforced how similar design principles apply regardless of the specific framework.\n\nProjects like this complement my work in AI systems by strengthening the underlying application architecture that intelligent services ultimately rely on.'
+},
+    {
       date: '2026-01-10',
       title: 'Webeet — Working Within a Layered System',
       body:
